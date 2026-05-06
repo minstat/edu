@@ -540,24 +540,24 @@ Figure 2.1: 엑셀 화면 예시
 Figure 2.2: 데이터프레임 구조
 </p>
 </div>
-<p>이제 4명의 학생의 이름(<code>name</code>), 성별(<code>sex</code>), 나이(<code>age</code>)로 구성된 4개의 행과 3개의 열을 가진 데이터프레임 <code>df</code> 를 만들어 보겠습니다.</p>
+<p>이제 4명의 학생의 이름(<code>name</code>), 성별(<code>gender</code>), 나이(<code>age</code>)로 구성된 4개의 행과 3개의 열을 가진 데이터프레임 <code>df</code> 를 만들어 보겠습니다.</p>
 <p><code>data.frame()</code> 함수의 괄호 안에는 <strong>각 열의 이름과 값</strong>을 <code>이름 = 값</code> 형태로 나열합니다. 각 값은 앞서 배운 <strong>벡터</strong> 형태로 주어집니다.</p>
 <ul>
 <li>첫 번째 인자 <code>name</code>은 학생 이름을 나타내는 열을 정의하며, 그 원소들은 성명으로 이루어진 문자열 벡터입니다.</li>
-<li>두 번째 인자 <code>sex</code>는 학생 성별을 나타내는 열을 정의하며, 그 원소들은 문자열 <code>"M"</code>과 <code>"F"</code>로 구성된 벡터입니다.</li>
+<li>두 번째 인자 <code>gedner</code>는 학생 성별을 나타내는 열을 정의하며, 그 원소들은 문자열 <code>"M"</code>과 <code>"F"</code>로 구성된 벡터입니다.</li>
 <li>세 번째 인자 <code>age</code>는 학생 나이를 나타내는 열을 정의하며, 그 원소들은 정수로 구성된 벡터입니다.</li>
 </ul>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="r-기초.html#cb108-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb108-2"><a href="r-기초.html#cb108-2" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;이철수&quot;</span>, <span class="st">&quot;김영희&quot;</span>, <span class="st">&quot;홍길동&quot;</span>, <span class="st">&quot;John Smith&quot;</span>),</span>
-<span id="cb108-3"><a href="r-기초.html#cb108-3" tabindex="-1"></a>  <span class="at">sex  =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>),</span>
+<span id="cb108-3"><a href="r-기초.html#cb108-3" tabindex="-1"></a>  <span class="at">gender  =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>),</span>
 <span id="cb108-4"><a href="r-기초.html#cb108-4" tabindex="-1"></a>  <span class="at">age  =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">33</span>)</span>
 <span id="cb108-5"><a href="r-기초.html#cb108-5" tabindex="-1"></a>)</span>
 <span id="cb108-6"><a href="r-기초.html#cb108-6" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>##         name sex age
-## 1     이철수   M  23
-## 2     김영희   F  25
-## 3     홍길동   M  21
-## 4 John Smith   M  33</code></pre>
+<pre><code>##         name gender age
+## 1     이철수      M  23
+## 2     김영희      F  25
+## 3     홍길동      M  21
+## 4 John Smith      M  33</code></pre>
 </div>
 <div id="데이터프레임-인덱싱" class="section level4 hasAnchor" number="2.2.1.2">
 <h4><span class="header-section-number">2.2.1.2</span> 데이터프레임 인덱싱<a href="r-기초.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EC%9D%B8%EB%8D%B1%EC%8B%B1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -594,21 +594,21 @@ Figure 2.2: 데이터프레임 구조
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE</code></pre>
 <p>논리 표현식 <code>df$age &gt;= 25</code>의 결과는 <strong>참과 거짓으로 구성된 논리 벡터</strong> 입니다. 이제 이 논리 벡터를 <strong>행 인덱스로 활용</strong>하여, 데이터프레임 <code>df</code>의 행을 조건에 맞게 선택할 수 있습니다.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="r-기초.html#cb123-1" tabindex="-1"></a>df[df<span class="sc">$</span>age <span class="sc">&gt;=</span> <span class="dv">25</span>, ]</span></code></pre></div>
-<pre><code>##         name sex age
-## 2     김영희   F  25
-## 4 John Smith   M  33</code></pre>
+<pre><code>##         name gender age
+## 2     김영희      F  25
+## 4 John Smith      M  33</code></pre>
 <p>데이터프레임의 <strong>행을 슬라이싱</strong> 하려는 경우에는 <code>df[start:end, ]</code> 형식을 사용합니다. R은 1부터 시작하고, <strong>끝 인덱스도 포함</strong>된다는 점에 주의하세요.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-기초.html#cb125-1" tabindex="-1"></a>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code></pre></div>
-<pre><code>##     name sex age
-## 1 이철수   M  23
-## 2 김영희   F  25
-## 3 홍길동   M  21</code></pre>
+<pre><code>##     name gender age
+## 1 이철수      M  23
+## 2 김영희      F  25
+## 3 홍길동      M  21</code></pre>
 </div>
 <div id="데이터프레임에-적용하는-함수" class="section level4 hasAnchor" number="2.2.1.3">
 <h4><span class="header-section-number">2.2.1.3</span> 데이터프레임에 적용하는 함수<a href="r-기초.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%97%90-%EC%A0%81%EC%9A%A9%ED%95%98%EB%8A%94-%ED%95%A8%EC%88%98" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>데이터프레임에서 숫자로 구성된 열들의 <strong>기초 통계량</strong> 은 <code>summary()</code> 함수를 사용하여 구할 수 있습니다. R에서는 점(<code>.</code>) 표기법으로 메소드를 호출하지 않고, 함수에 데이터프레임을 인자로 전달하는 방식으로 작업합니다.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="r-기초.html#cb127-1" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code></pre></div>
-<pre><code>##         name           sex         age      
+<pre><code>##         name          gender       age      
 ##  Length   : 4   Length   :4   Min.   :21.0  
 ##  N.unique : 4   N.unique :2   1st Qu.:22.5  
 ##  N.blank  : 0   N.blank  :0   Median :24.0  
@@ -629,15 +629,15 @@ Figure 2.2: 데이터프레임 구조
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-기초.html#cb129-1" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code></pre></div>
 <pre><code>## [1] 4 3</code></pre>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-기초.html#cb131-1" tabindex="-1"></a><span class="fu">names</span>(df)</span></code></pre></div>
-<pre><code>## [1] &quot;name&quot; &quot;sex&quot;  &quot;age&quot;</code></pre>
+<pre><code>## [1] &quot;name&quot;   &quot;gender&quot; &quot;age&quot;</code></pre>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-기초.html#cb133-1" tabindex="-1"></a><span class="fu">sapply</span>(df[, <span class="st">&quot;age&quot;</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>], max)</span></code></pre></div>
 <pre><code>## age 
 ##  33</code></pre>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-기초.html#cb135-1" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
-##  $ name: chr  &quot;이철수&quot; &quot;김영희&quot; &quot;홍길동&quot; &quot;John Smith&quot;
-##  $ sex : chr  &quot;M&quot; &quot;F&quot; &quot;M&quot; &quot;M&quot;
-##  $ age : num  23 25 21 33</code></pre>
+##  $ name  : chr  &quot;이철수&quot; &quot;김영희&quot; &quot;홍길동&quot; &quot;John Smith&quot;
+##  $ gender: chr  &quot;M&quot; &quot;F&quot; &quot;M&quot; &quot;M&quot;
+##  $ age   : num  23 25 21 33</code></pre>
 <p>데이터프레임 <code>df</code>의 <strong>원소</strong>는 <strong>행과 열의 숫자 인덱스</strong>를 이용하여 선택할 수 있습니다. R에서는 <strong>기본 대괄호</strong> 안에 행과 열 인덱스를 쉼표(<code>,</code>)로 구분하여 지정합니다.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-기초.html#cb137-1" tabindex="-1"></a>df[<span class="dv">2</span>, <span class="dv">1</span>]    <span class="co"># 2행 1열 → &quot;김영희&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot;김영희&quot;</code></pre>
