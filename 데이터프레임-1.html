@@ -536,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="데이터프레임-1.html#cb210-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://uos-bigdata.github.io/bigdata-exercise/_downloads/5e7e8554845467504c4ee6ad0a1012d6/korea_house_data_01.csv&quot;</span></span>
 <span id="cb210-2"><a href="데이터프레임-1.html#cb210-2" tabindex="-1"></a>house <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;EUC-KR&quot;</span>))</span></code></pre></div>
 <pre><code>## Rows: 108 Columns: 10
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): 행정구역별(읍면동)
 ## dbl (9): 시점, 일반가구_계, 1인, 2인, 3인, 4인, 5인, 6인, 7인 이상
@@ -545,19 +545,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="데이터프레임-1.html#cb212-1" tabindex="-1"></a><span class="fu">head</span>(house, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 10
-##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`  `4인`  `5인`  `6인`
-##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1  2015 전국                    19111030 5203440 4993818 4100979 3.59e6 940413 217474
-##  2  2015 서울특별시               3784490 1115744  930467  817440 7.02e5 169436  38547
-##  3  2015 부산광역시               1335900  361749  366048  296742 2.38e5  56971  12928
-##  4  2015 대구광역시                928528  239517  239824  208795 1.84e5  44071   9582
-##  5  2015 인천광역시               1045417  243678  265079  245135 2.21e5  55230  12253
-##  6  2015 광주광역시                567157  163577  137662  115701 1.10e5  32199   6647
-##  7  2015 대전광역시                582504  169391  140603  122088 1.12e5  30022   6489
-##  8  2015 울산광역시                423412  103551  104101  100230 9.07e4  19914   3851
-##  9  2015 세종특별자치시             75219   21889   18010   15219 1.46e4   4238    994
-## 10  2015 경기도                   4384742 1026471 1062222 1005330 9.71e5 246638  56117
-## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
+##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`   `4인`  `5인`
+##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1  2015 전국                    19111030 5203440 4993818 4100979 3588931 940413
+##  2  2015 서울특별시               3784490 1115744  930467  817440  701945 169436
+##  3  2015 부산광역시               1335900  361749  366048  296742  238031  56971
+##  4  2015 대구광역시                928528  239517  239824  208795  184258  44071
+##  5  2015 인천광역시               1045417  243678  265079  245135  220538  55230
+##  6  2015 광주광역시                567157  163577  137662  115701  109612  32199
+##  7  2015 대전광역시                582504  169391  140603  122088  112055  30022
+##  8  2015 울산광역시                423412  103551  104101  100230   90735  19914
+##  9  2015 세종특별자치시             75219   21889   18010   15219   14560   4238
+## 10  2015 경기도                   4384742 1026471 1062222 1005330  971146 246638
+## # ℹ 2 more variables: `6인` &lt;dbl&gt;, `7인 이상` &lt;dbl&gt;</code></pre>
 <blockquote>
 <p><strong>참고</strong>: 한글 열 이름은 dplyr에서 사용할 때 <strong>백틱(`)</strong> 으로 감싸 주어야 합니다. 예: <code>house |&gt; select(`행정구역별(읍면동)`)</code>. 뒤에서 영문 이름으로 바꾸어 줄 것입니다.</p>
 </blockquote>
@@ -567,16 +567,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="데이터프레임-1.html#cb216-1" tabindex="-1"></a><span class="fu">glimpse</span>(house)    <span class="co"># 자료 구조 한눈에 보기</span></span></code></pre></div>
 <pre><code>## Rows: 108
 ## Columns: 10
-## $ 시점                 &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2…
-## $ `행정구역별(읍면동)` &lt;chr&gt; &quot;전국&quot;, &quot;서울특별시&quot;, &quot;부산광역시&quot;, &quot;대구광역시&quot;, &quot;인천광역시&quot;, &quot;광주광역시&quot;, &quot;대전광…
-## $ 일반가구_계          &lt;dbl&gt; 19111030, 3784490, 1335900, 928528, 1045417, 567157, 58…
-## $ `1인`                &lt;dbl&gt; 5203440, 1115744, 361749, 239517, 243678, 163577, 16939…
-## $ `2인`                &lt;dbl&gt; 4993818, 930467, 366048, 239824, 265079, 137662, 140603…
-## $ `3인`                &lt;dbl&gt; 4100979, 817440, 296742, 208795, 245135, 115701, 122088…
-## $ `4인`                &lt;dbl&gt; 3588931, 701945, 238031, 184258, 220538, 109612, 112055…
-## $ `5인`                &lt;dbl&gt; 940413, 169436, 56971, 44071, 55230, 32199, 30022, 1991…
-## $ `6인`                &lt;dbl&gt; 217474, 38547, 12928, 9582, 12253, 6647, 6489, 3851, 99…
-## $ `7인 이상`           &lt;dbl&gt; 65975, 10911, 3431, 2481, 3504, 1759, 1856, 1030, 309, …</code></pre>
+## $ 시점                 &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 201…
+## $ `행정구역별(읍면동)` &lt;chr&gt; &quot;전국&quot;, &quot;서울특별시&quot;, &quot;부산광역시&quot;, &quot;대구광역시&quot;, &quot;인천광역시&quot;, &quot;광주광역시&quot;, …
+## $ 일반가구_계          &lt;dbl&gt; 19111030, 3784490, 1335900, 928528, 1045417, 567157…
+## $ `1인`                &lt;dbl&gt; 5203440, 1115744, 361749, 239517, 243678, 163577, 1…
+## $ `2인`                &lt;dbl&gt; 4993818, 930467, 366048, 239824, 265079, 137662, 14…
+## $ `3인`                &lt;dbl&gt; 4100979, 817440, 296742, 208795, 245135, 115701, 12…
+## $ `4인`                &lt;dbl&gt; 3588931, 701945, 238031, 184258, 220538, 109612, 11…
+## $ `5인`                &lt;dbl&gt; 940413, 169436, 56971, 44071, 55230, 32199, 30022, …
+## $ `6인`                &lt;dbl&gt; 217474, 38547, 12928, 9582, 12253, 6647, 6489, 3851…
+## $ `7인 이상`           &lt;dbl&gt; 65975, 10911, 3431, 2481, 3504, 1759, 1856, 1030, 3…</code></pre>
 </div>
 <div id="정렬" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> 정렬<a href="데이터프레임-1.html#%EC%A0%95%EB%A0%AC" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -588,35 +588,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>데이터프레임을 행정구역별(읍면동)로 정렬하면 다음과 같이 작성합니다.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="데이터프레임-1.html#cb218-1" tabindex="-1"></a>house <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="st">`</span><span class="at">행정구역별(읍면동)</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 108 × 10
-##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`  `4인`  `5인` `6인`
-##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1  2015 강원도                    606117  189379  178470  116384  87182  25922  6567
-##  2  2016 강원도                    616346  197917  180639  117408  86362  25441  6477
-##  3  2017 강원도                    620729  199645  187312  117912  83773  24178  6020
-##  4  2018 강원도                    628484  206295  193105  117713  81241  22835  5522
-##  5  2019 강원도                    633942  208857  200035  117416  79476  21560  5043
-##  6  2020 강원도                    661039  231371  206755  117504  79073  20669  4409
-##  7  2015 경기도                   4384742 1026471 1062222 1005330 971146 246638 56117
-##  8  2016 경기도                   4484424 1067916 1091119 1033608 973096 246575 55612
-##  9  2017 경기도                   4602950 1124541 1146712 1056797 966018 240634 53016
-## 10  2018 경기도                   4751497 1197586 1213259 1084338 958729 234095 49527
+##     시점 `행정구역별(읍면동)` 일반가구_계  `1인`  `2인`  `3인`  `4인`  `5인` `6인`
+##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1  2015 강원도                    606117 1.89e5 1.78e5 1.16e5  87182  25922  6567
+##  2  2016 강원도                    616346 1.98e5 1.81e5 1.17e5  86362  25441  6477
+##  3  2017 강원도                    620729 2.00e5 1.87e5 1.18e5  83773  24178  6020
+##  4  2018 강원도                    628484 2.06e5 1.93e5 1.18e5  81241  22835  5522
+##  5  2019 강원도                    633942 2.09e5 2.00e5 1.17e5  79476  21560  5043
+##  6  2020 강원도                    661039 2.31e5 2.07e5 1.18e5  79073  20669  4409
+##  7  2015 경기도                   4384742 1.03e6 1.06e6 1.01e6 971146 246638 56117
+##  8  2016 경기도                   4484424 1.07e6 1.09e6 1.03e6 973096 246575 55612
+##  9  2017 경기도                   4602950 1.12e6 1.15e6 1.06e6 966018 240634 53016
+## 10  2018 경기도                   4751497 1.20e6 1.21e6 1.08e6 958729 234095 49527
 ## # ℹ 98 more rows
 ## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
 <p>두 개의 열을 기준으로 정렬할 때는 <code>arrange()</code> 안에 열 이름을 순서대로 나열합니다.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="데이터프레임-1.html#cb220-1" tabindex="-1"></a>house <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="st">`</span><span class="at">행정구역별(읍면동)</span><span class="st">`</span>, 시점)</span></code></pre></div>
 <pre><code>## # A tibble: 108 × 10
-##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`  `4인`  `5인` `6인`
-##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1  2015 강원도                    606117  189379  178470  116384  87182  25922  6567
-##  2  2016 강원도                    616346  197917  180639  117408  86362  25441  6477
-##  3  2017 강원도                    620729  199645  187312  117912  83773  24178  6020
-##  4  2018 강원도                    628484  206295  193105  117713  81241  22835  5522
-##  5  2019 강원도                    633942  208857  200035  117416  79476  21560  5043
-##  6  2020 강원도                    661039  231371  206755  117504  79073  20669  4409
-##  7  2015 경기도                   4384742 1026471 1062222 1005330 971146 246638 56117
-##  8  2016 경기도                   4484424 1067916 1091119 1033608 973096 246575 55612
-##  9  2017 경기도                   4602950 1124541 1146712 1056797 966018 240634 53016
-## 10  2018 경기도                   4751497 1197586 1213259 1084338 958729 234095 49527
+##     시점 `행정구역별(읍면동)` 일반가구_계  `1인`  `2인`  `3인`  `4인`  `5인` `6인`
+##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1  2015 강원도                    606117 1.89e5 1.78e5 1.16e5  87182  25922  6567
+##  2  2016 강원도                    616346 1.98e5 1.81e5 1.17e5  86362  25441  6477
+##  3  2017 강원도                    620729 2.00e5 1.87e5 1.18e5  83773  24178  6020
+##  4  2018 강원도                    628484 2.06e5 1.93e5 1.18e5  81241  22835  5522
+##  5  2019 강원도                    633942 2.09e5 2.00e5 1.17e5  79476  21560  5043
+##  6  2020 강원도                    661039 2.31e5 2.07e5 1.18e5  79073  20669  4409
+##  7  2015 경기도                   4384742 1.03e6 1.06e6 1.01e6 971146 246638 56117
+##  8  2016 경기도                   4484424 1.07e6 1.09e6 1.03e6 973096 246575 55612
+##  9  2017 경기도                   4602950 1.12e6 1.15e6 1.06e6 966018 240634 53016
+## 10  2018 경기도                   4751497 1.20e6 1.21e6 1.08e6 958729 234095 49527
 ## # ℹ 98 more rows
 ## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
 <p>특정한 연도의 자료만 선택할 수도 있습니다. 예를 들어, 2020년의 가구수만 보고 총 가구수 기준으로 내림차순 정렬하려면 다음과 같이 합니다. 파이프로 자연스럽게 연결되는 것이 dplyr의 큰 장점입니다.</p>
@@ -624,27 +624,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb222-2"><a href="데이터프레임-1.html#cb222-2" tabindex="-1"></a>  <span class="fu">filter</span>(시점 <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb222-3"><a href="데이터프레임-1.html#cb222-3" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(일반가구_계))</span></code></pre></div>
 <pre><code>## # A tibble: 18 × 10
-##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`  `4인`  `5인`  `6인`
-##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1  2020 전국                    20926710 6643354 5864525 4200629 3.27e6 761417 147172
-##  2  2020 경기도                   5098431 1406010 1350139 1119823 9.51e5 218173  42094
-##  3  2020 서울특별시               3982290 1390701 1033901  792690 6.03e5 130122  25770
-##  4  2020 부산광역시               1405037  455207  411455  282233 2.04e5  42608   7874
-##  5  2020 경상남도                 1350155  417737  399700  270061 2.06e5  46516   8410
-##  6  2020 인천광역시               1147200  324841  316387  251928 1.99e5  44949   8440
-##  7  2020 경상북도                 1131819  388791  363061  202539 1.37e5  32174   6388
-##  8  2020 대구광역시                985816  304543  276237  205048 1.60e5  33131   5976
-##  9  2020 충청남도                  892222  304973  264909  159754 1.22e5  32419   6618
-## 10  2020 전라남도                  761518  256633  251506  131372 8.79e4  26561   5727
-## 11  2020 전라북도                  755575  255269  233334  134414 9.69e4  27962   5920
-## 12  2020 충청북도                  678922  236208  198840  122347 9.13e4  24143   4694
-## 13  2020 강원도                    661039  231371  206755  117504 7.91e4  20669   4409
-## 14  2020 대전광역시                631208  228842  164795  116989 9.37e4  21883   4034
-## 15  2020 광주광역시                599217  193948  162403  115978 9.73e4  24613   4011
-## 16  2020 울산광역시                444087  122848  123591   99739 7.95e4  15447   2398
-## 17  2020 제주특별자치도            263068   81855   74308   49903 3.87e4  13719   3380
-## 18  2020 세종특별자치시            139106   43577   33204   28307 2.64e4   6328   1029
-## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
+##     시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`   `4인`  `5인`
+##    &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1  2020 전국                    20926710 6643354 5864525 4200629 3271315 761417
+##  2  2020 경기도                   5098431 1406010 1350139 1119823  951370 218173
+##  3  2020 서울특별시               3982290 1390701 1033901  792690  602791 130122
+##  4  2020 부산광역시               1405037  455207  411455  282233  203769  42608
+##  5  2020 경상남도                 1350155  417737  399700  270061  205658  46516
+##  6  2020 인천광역시               1147200  324841  316387  251928  198528  44949
+##  7  2020 경상북도                 1131819  388791  363061  202539  137092  32174
+##  8  2020 대구광역시                985816  304543  276237  205048  159654  33131
+##  9  2020 충청남도                  892222  304973  264909  159754  121589  32419
+## 10  2020 전라남도                  761518  256633  251506  131372   87883  26561
+## 11  2020 전라북도                  755575  255269  233334  134414   96907  27962
+## 12  2020 충청북도                  678922  236208  198840  122347   91329  24143
+## 13  2020 강원도                    661039  231371  206755  117504   79073  20669
+## 14  2020 대전광역시                631208  228842  164795  116989   93698  21883
+## 15  2020 광주광역시                599217  193948  162403  115978   97323  24613
+## 16  2020 울산광역시                444087  122848  123591   99739   79489  15447
+## 17  2020 제주특별자치도            263068   81855   74308   49903   38747  13719
+## 18  2020 세종특별자치시            139106   43577   33204   28307   26415   6328
+## # ℹ 2 more variables: `6인` &lt;dbl&gt;, `7인 이상` &lt;dbl&gt;</code></pre>
 <blockquote>
 <p><strong>참고: 원본 변경 여부</strong><br />
 <strong>R/dplyr 에서는 모든 함수가 원본을 변경하지 않고 새로운 데이터프레임을 반환</strong> 합니다. 결과를 유지하려면 항상 새로운 변수에 할당해야 합니다.</p>
@@ -652,25 +652,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="데이터프레임-1.html#cb224-1" tabindex="-1"></a><span class="co"># 원본은 그대로 유지됨</span></span>
 <span id="cb224-2"><a href="데이터프레임-1.html#cb224-2" tabindex="-1"></a><span class="fu">head</span>(house, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 10
-##    시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`   `4인`  `5인`  `6인`
-##   &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2015 전국                    19111030 5203440 4993818 4100979 3588931 940413 217474
-## 2  2015 서울특별시               3784490 1115744  930467  817440  701945 169436  38547
-## 3  2015 부산광역시               1335900  361749  366048  296742  238031  56971  12928
-## 4  2015 대구광역시                928528  239517  239824  208795  184258  44071   9582
-## 5  2015 인천광역시               1045417  243678  265079  245135  220538  55230  12253
+##    시점 `행정구역별(읍면동)` 일반가구_계  `1인`  `2인`  `3인`  `4인`  `5인`  `6인`
+##   &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2015 전국                    19111030 5.20e6 4.99e6 4.10e6 3.59e6 940413 217474
+## 2  2015 서울특별시               3784490 1.12e6 9.30e5 8.17e5 7.02e5 169436  38547
+## 3  2015 부산광역시               1335900 3.62e5 3.66e5 2.97e5 2.38e5  56971  12928
+## 4  2015 대구광역시                928528 2.40e5 2.40e5 2.09e5 1.84e5  44071   9582
+## 5  2015 인천광역시               1045417 2.44e5 2.65e5 2.45e5 2.21e5  55230  12253
 ## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
 <p>정렬한 결과를 유지하려면 새 변수에 할당하거나 원래 변수에 덮어씁니다.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="데이터프레임-1.html#cb226-1" tabindex="-1"></a>house_sorted <span class="ot">&lt;-</span> house <span class="sc">|&gt;</span> <span class="fu">arrange</span>(시점)</span>
 <span id="cb226-2"><a href="데이터프레임-1.html#cb226-2" tabindex="-1"></a><span class="fu">head</span>(house_sorted, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 10
-##    시점 `행정구역별(읍면동)` 일반가구_계   `1인`   `2인`   `3인`   `4인`  `5인`  `6인`
-##   &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2015 전국                    19111030 5203440 4993818 4100979 3588931 940413 217474
-## 2  2015 서울특별시               3784490 1115744  930467  817440  701945 169436  38547
-## 3  2015 부산광역시               1335900  361749  366048  296742  238031  56971  12928
-## 4  2015 대구광역시                928528  239517  239824  208795  184258  44071   9582
-## 5  2015 인천광역시               1045417  243678  265079  245135  220538  55230  12253
+##    시점 `행정구역별(읍면동)` 일반가구_계  `1인`  `2인`  `3인`  `4인`  `5인`  `6인`
+##   &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2015 전국                    19111030 5.20e6 4.99e6 4.10e6 3.59e6 940413 217474
+## 2  2015 서울특별시               3784490 1.12e6 9.30e5 8.17e5 7.02e5 169436  38547
+## 3  2015 부산광역시               1335900 3.62e5 3.66e5 2.97e5 2.38e5  56971  12928
+## 4  2015 대구광역시                928528 2.40e5 2.40e5 2.09e5 1.84e5  44071   9582
+## 5  2015 인천광역시               1045417 2.44e5 2.65e5 2.45e5 2.21e5  55230  12253
 ## # ℹ 1 more variable: `7인 이상` &lt;dbl&gt;</code></pre>
 </div>
 <div id="행과-열-지우기" class="section level3 hasAnchor" number="3.2.4">
@@ -682,13 +682,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>dplyr에서는 <code>select()</code> 안에 <strong>음수 부호(<code>-</code>)</strong> 를 붙여 제외할 열을 표시합니다.</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="데이터프레임-1.html#cb228-1" tabindex="-1"></a>house <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>일반가구_계) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 9
-##    시점 `행정구역별(읍면동)`   `1인`   `2인`   `3인`   `4인`  `5인`  `6인` `7인 이상`
-##   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-## 1  2015 전국                 5203440 4993818 4100979 3588931 940413 217474      65975
-## 2  2015 서울특별시           1115744  930467  817440  701945 169436  38547      10911
-## 3  2015 부산광역시            361749  366048  296742  238031  56971  12928       3431
-## 4  2015 대구광역시            239517  239824  208795  184258  44071   9582       2481
-## 5  2015 인천광역시            243678  265079  245135  220538  55230  12253       3504</code></pre>
+##    시점 `행정구역별(읍면동)`   `1인`  `2인`  `3인`  `4인`  `5인`  `6인` `7인 이상`
+##   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1  2015 전국                 5203440 4.99e6 4.10e6 3.59e6 940413 217474      65975
+## 2  2015 서울특별시           1115744 9.30e5 8.17e5 7.02e5 169436  38547      10911
+## 3  2015 부산광역시            361749 3.66e5 2.97e5 2.38e5  56971  12928       3431
+## 4  2015 대구광역시            239517 2.40e5 2.09e5 1.84e5  44071   9582       2481
+## 5  2015 인천광역시            243678 2.65e5 2.45e5 2.21e5  55230  12253       3504</code></pre>
 <p>여러 열을 동시에 지우고 싶을 때는 <code>c()</code>로 묶어 줍니다.</p>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="데이터프레임-1.html#cb230-1" tabindex="-1"></a>house <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(일반가구_계, <span class="st">`</span><span class="at">7인 이상</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
@@ -712,11 +712,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="데이터프레임-1.html#cb236-1" tabindex="-1"></a>house <span class="ot">&lt;-</span> house  <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>일반가구_계)</span>
 <span id="cb236-2"><a href="데이터프레임-1.html#cb236-2" tabindex="-1"></a><span class="fu">head</span>(house, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 9
-##    시점 `행정구역별(읍면동)`   `1인`   `2인`   `3인`   `4인`  `5인`  `6인` `7인 이상`
-##   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-## 1  2015 전국                 5203440 4993818 4100979 3588931 940413 217474      65975
-## 2  2015 서울특별시           1115744  930467  817440  701945 169436  38547      10911
-## 3  2015 부산광역시            361749  366048  296742  238031  56971  12928       3431</code></pre>
+##    시점 `행정구역별(읍면동)`   `1인`  `2인`  `3인`  `4인`  `5인`  `6인` `7인 이상`
+##   &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1  2015 전국                 5203440 4.99e6 4.10e6 3.59e6 940413 217474      65975
+## 2  2015 서울특별시           1115744 9.30e5 8.17e5 7.02e5 169436  38547      10911
+## 3  2015 부산광역시            361749 3.66e5 2.97e5 2.38e5  56971  12928       3431</code></pre>
 </div>
 <div id="행-지우기" class="section level4 hasAnchor" number="3.2.4.2">
 <h4><span class="header-section-number">3.2.4.2</span> 행 지우기<a href="데이터프레임-1.html#%ED%96%89-%EC%A7%80%EC%9A%B0%EA%B8%B0" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -826,7 +826,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="데이터프레임-1.html#cb252-1" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://uos-bigdata.github.io/bigdata-exercise/_downloads/98f9e204219d61cb77286b7a5fed705b/weather_stats.csv&quot;</span></span>
 <span id="cb252-2"><a href="데이터프레임-1.html#cb252-2" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;EUC-KR&quot;</span>))</span></code></pre></div>
 <pre><code>## Rows: 5 Columns: 5
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): 일시
 ## dbl (4): 평균기온(℃), 최고기온 평균(℃), 최저기온 평균(℃), 강수량(mm)
@@ -911,10 +911,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1       13.2    0.305      12.9      13.6       18.2    0.303      17.9      18.5
 ## # ℹ 16 more variables: min_t_mean &lt;dbl&gt;, min_t_sd &lt;dbl&gt;, min_t_min &lt;dbl&gt;,
-## #   min_t_max &lt;dbl&gt;, rain_mean &lt;dbl&gt;, rain_sd &lt;dbl&gt;, rain_min &lt;dbl&gt;, rain_max &lt;dbl&gt;,
-## #   avg_t_F_mean &lt;dbl&gt;, avg_t_F_sd &lt;dbl&gt;, avg_t_F_min &lt;dbl&gt;, avg_t_F_max &lt;dbl&gt;,
-## #   avg_t_minmax_mean &lt;dbl&gt;, avg_t_minmax_sd &lt;dbl&gt;, avg_t_minmax_min &lt;dbl&gt;,
-## #   avg_t_minmax_max &lt;dbl&gt;</code></pre>
+## #   min_t_max &lt;dbl&gt;, rain_mean &lt;dbl&gt;, rain_sd &lt;dbl&gt;, rain_min &lt;dbl&gt;,
+## #   rain_max &lt;dbl&gt;, avg_t_F_mean &lt;dbl&gt;, avg_t_F_sd &lt;dbl&gt;, avg_t_F_min &lt;dbl&gt;,
+## #   avg_t_F_max &lt;dbl&gt;, avg_t_minmax_mean &lt;dbl&gt;, avg_t_minmax_sd &lt;dbl&gt;,
+## #   avg_t_minmax_min &lt;dbl&gt;, avg_t_minmax_max &lt;dbl&gt;</code></pre>
 <p>R에는 모든 변수에 대한 다양한 요약 통계량을 한 번에 보여주는 <strong><code>summary()</code></strong> 함수가 base에 내장되어 있습니다 (Python pandas의 <code>describe()</code>와 유사한 역할).</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="데이터프레임-1.html#cb268-1" tabindex="-1"></a><span class="fu">summary</span>(weather)</span></code></pre></div>
 <pre><code>##         year       avg_t           max_t           min_t           rain       
@@ -1309,7 +1309,7 @@ dplyr/tibble 에서는 결측값을 <strong><code>NA</code></strong> 로 표현�
 <span id="cb316-15"><a href="데이터프레임-1.html#cb316-15" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span>                    <span class="co"># 전국 합산</span></span>
 <span id="cb316-16"><a href="데이터프레임-1.html#cb316-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">house_total =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">&quot;p&quot;</span>))))   <span class="co"># 총가구수</span></span></code></pre></div>
 <pre><code>## Rows: 108 Columns: 10
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): 행정구역별(읍면동)
 ## dbl (9): 시점, 일반가구_계, 1인, 2인, 3인, 4인, 5인, 6인, 7인 이상
@@ -1335,7 +1335,7 @@ dplyr/tibble 에서는 결측값을 <strong><code>NA</code></strong> 로 표현�
 <span id="cb320-2"><a href="데이터프레임-1.html#cb320-2" tabindex="-1"></a></span>
 <span id="cb320-3"><a href="데이터프레임-1.html#cb320-3" tabindex="-1"></a>pop_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url2, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;EUC-KR&quot;</span>))</span></code></pre></div>
 <pre><code>## Rows: 102 Columns: 4
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): 행정구역별(읍면동)
 ## dbl (3): 시점, 남자(명), 여자(명)
@@ -1432,7 +1432,7 @@ Figure 3.2: 연도별 가구당 평균 인원수 변화
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="데이터프레임-1.html#cb331-1" tabindex="-1"></a>url_house <span class="ot">&lt;-</span> <span class="st">&quot;https://uos-bigdata.github.io/bigdata-exercise/_downloads/5e7e8554845467504c4ee6ad0a1012d6/korea_house_data_01.csv&quot;</span></span>
 <span id="cb331-2"><a href="데이터프레임-1.html#cb331-2" tabindex="-1"></a>house_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_house, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;EUC-KR&quot;</span>))</span></code></pre></div>
 <pre><code>## Rows: 108 Columns: 10
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): 행정구역별(읍면동)
 ## dbl (9): 시점, 일반가구_계, 1인, 2인, 3인, 4인, 5인, 6인, 7인 이상
