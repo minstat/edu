@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 관계와 예측 | R을 활용한 데이터 분석 방법론</title>
+  <meta name="description" content="Chapter 5 관계와 예측 | R을 활용한 데이터 분석 방법론" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 관계와 예측 | R을 활용한 데이터 분석 방법론" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 관계와 예측 | R을 활용한 데이터 분석 방법론" />
+  
+  
+  
+
+<meta name="author" content="장동민" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="자료의-시각화와-분포.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R을 활용한 데이터 분석 방법론</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>머리말</a></li>
+<li class="chapter" data-level="1" data-path="서론.html"><a href="서론.html"><i class="fa fa-check"></i><b>1</b> 서론</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="서론.html"><a href="서론.html#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%9D%B8%EA%B0%84-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5"><i class="fa fa-check"></i><b>1.1</b> 데이터, 인간, 그리고 인공지능</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="서론.html"><a href="서론.html#%EC%9D%B8%EA%B0%84%EC%9D%98-%ED%95%99%EC%8A%B5"><i class="fa fa-check"></i><b>1.1.1</b> 인간의 학습</a></li>
+<li class="chapter" data-level="1.1.2" data-path="서론.html"><a href="서론.html#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5%EA%B3%BC-%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%EC%9D%98-%ED%83%84%EC%83%9D"><i class="fa fa-check"></i><b>1.1.2</b> 기계학습과 인공지능의 탄생</a></li>
+<li class="chapter" data-level="1.1.3" data-path="서론.html"><a href="서론.html#%EB%AA%A8%EB%93%A0-%EA%B2%83%EC%9D%98-%EA%B8%B0%EB%B0%98-%EB%8D%B0%EC%9D%B4%ED%84%B0"><i class="fa fa-check"></i><b>1.1.3</b> 모든 것의 기반: 데이터</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="서론.html"><a href="서론.html#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4"><i class="fa fa-check"></i><b>1.2</b> 프로그래밍 언어</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="서론.html"><a href="서론.html#%EC%96%B8%EC%96%B4language%EB%8A%94-%EC%86%8C%ED%86%B5%EC%9E%85%EB%8B%88%EB%8B%A4"><i class="fa fa-check"></i><b>1.2.1</b> 언어(language)는 소통입니다</a></li>
+<li class="chapter" data-level="1.2.2" data-path="서론.html"><a href="서론.html#%EC%BB%B4%ED%93%A8%ED%84%B0%EC%99%80-%EB%8C%80%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%96%B8%EC%96%B4"><i class="fa fa-check"></i><b>1.2.2</b> 컴퓨터와 대화하는 방법, 프로그래밍 언어</a></li>
+<li class="chapter" data-level="1.2.3" data-path="서론.html"><a href="서론.html#%EC%96%B8%EC%96%B4-%ED%95%99%EC%8A%B5%EC%9D%98-%ED%95%B5%EC%8B%AC"><i class="fa fa-check"></i><b>1.2.3</b> 언어 학습의 핵심</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="서론.html"><a href="서론.html#%ED%86%B5%EA%B3%84%ED%95%99"><i class="fa fa-check"></i><b>1.3</b> 통계학</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="서론.html"><a href="서론.html#%EB%B6%84%EC%84%9D%EA%B3%BC-%EC%98%88%EC%B8%A1-%EC%9A%B0%EB%A6%AC%EB%8A%94-%EC%99%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EB%B6%84%EC%84%9D%ED%95%A0%EA%B9%8C"><i class="fa fa-check"></i><b>1.3.1</b> 분석과 예측: 우리는 왜 데이터를 분석할까?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="서론.html"><a href="서론.html#%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B3%BC%ED%95%99"><i class="fa fa-check"></i><b>1.3.2</b> 빅데이터와 데이터 과학</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="서론.html"><a href="서론.html#%EC%A0%95%EB%A6%AC"><i class="fa fa-check"></i><b>1.4</b> 정리</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-기초.html"><a href="r-기초.html"><i class="fa fa-check"></i><b>2</b> R 기초</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-기초.html"><a href="r-기초.html#%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC-%EB%B3%80%EC%88%98"><i class="fa fa-check"></i><b>2.1</b> 표현식과 변수</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-기초.html"><a href="r-기초.html#%ED%91%9C%ED%98%84%EC%8B%9D"><i class="fa fa-check"></i><b>2.1.1</b> 표현식</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-기초.html"><a href="r-기초.html#%EC%88%98%ED%95%99-%EC%97%B0%EC%82%B0"><i class="fa fa-check"></i><b>2.1.2</b> 수학 연산</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r-기초.html"><a href="r-기초.html#%EB%B9%84%EA%B5%90%EC%97%B0%EC%82%B0%EC%9E%90%EC%99%80-%EB%85%BC%EB%A6%AC%EC%97%B0%EC%82%B0%EC%9E%90"><i class="fa fa-check"></i><b>2.1.3</b> 비교연산자와 논리연산자</a></li>
+<li class="chapter" data-level="2.1.4" data-path="r-기초.html"><a href="r-기초.html#%EB%B3%80%EC%88%98"><i class="fa fa-check"></i><b>2.1.4</b> 변수</a></li>
+<li class="chapter" data-level="2.1.5" data-path="r-기초.html"><a href="r-기초.html#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%ED%8C%A8%ED%82%A4%EC%A7%80%EC%99%80-%ED%95%A8%EC%88%98"><i class="fa fa-check"></i><b>2.1.5</b> 라이브러리(패키지)와 함수</a></li>
+<li class="chapter" data-level="2.1.6" data-path="r-기초.html"><a href="r-기초.html#%EB%B2%A1%ED%84%B0%EC%99%80-%EB%A6%AC%EC%8A%A4%ED%8A%B8"><i class="fa fa-check"></i><b>2.1.6</b> 벡터와 리스트</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-기초.html"><a href="r-기초.html#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC"><i class="fa fa-check"></i><b>2.2</b> 데이터 처리</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-기초.html"><a href="r-기초.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84"><i class="fa fa-check"></i><b>2.2.1</b> 데이터프레임</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html"><i class="fa fa-check"></i><b>3</b> 데이터프레임</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%98-%EC%A0%95%EC%9D%98%EC%99%80-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C"><i class="fa fa-check"></i><b>3.1</b> 데이터프레임의 정의와 구성요소</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%98-%EC%A0%95%EC%9D%98-1"><i class="fa fa-check"></i><b>3.1.1</b> 데이터프레임의 정의</a></li>
+<li class="chapter" data-level="3.1.2" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%97%B4-%EC%84%A0%ED%83%9D"><i class="fa fa-check"></i><b>3.1.2</b> 열 선택</a></li>
+<li class="chapter" data-level="3.1.3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%ED%96%89-%EC%84%A0%ED%83%9D"><i class="fa fa-check"></i><b>3.1.3</b> 행 선택</a></li>
+<li class="chapter" data-level="3.1.4" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%84%A0%ED%83%9D"><i class="fa fa-check"></i><b>3.1.4</b> 행과 열 선택</a></li>
+<li class="chapter" data-level="3.1.5" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%9C%84%EC%B9%98-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EB%8D%B1%EC%8B%B1"><i class="fa fa-check"></i><b>3.1.5</b> 위치 기반 인덱싱</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%98-%EC%A0%95%EB%A6%AC"><i class="fa fa-check"></i><b>3.2</b> 데이터프레임의 정리</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%9E%90%EB%A3%8C%EC%9D%98-%EC%A0%95%EB%A6%AC"><i class="fa fa-check"></i><b>3.2.1</b> 자료의 정리</a></li>
+<li class="chapter" data-level="3.2.2" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%ED%95%9C%EA%B5%AD%EC%9D%98-%EA%B0%80%EA%B5%AC%EC%88%98"><i class="fa fa-check"></i><b>3.2.2</b> 한국의 가구수</a></li>
+<li class="chapter" data-level="3.2.3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%A0%95%EB%A0%AC"><i class="fa fa-check"></i><b>3.2.3</b> 정렬</a></li>
+<li class="chapter" data-level="3.2.4" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%ED%96%89%EA%B3%BC-%EC%97%B4-%EC%A7%80%EC%9A%B0%EA%B8%B0"><i class="fa fa-check"></i><b>3.2.4</b> 행과 열 지우기</a></li>
+<li class="chapter" data-level="3.2.5" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%97%B4-%EC%9D%B4%EB%A6%84-%EB%B0%94%EA%BE%B8%EA%B8%B0"><i class="fa fa-check"></i><b>3.2.5</b> 열 이름 바꾸기</a></li>
+<li class="chapter" data-level="3.2.6" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%99%B8%EB%B6%80-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0"><i class="fa fa-check"></i><b>3.2.6</b> 외부 파일로 저장하기</a></li>
+<li class="chapter" data-level="3.2.7" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%97%B4-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0"><i class="fa fa-check"></i><b>3.2.7</b> 열 추가하기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%98-%EC%9A%94%EC%95%BD"><i class="fa fa-check"></i><b>3.3</b> 데이터프레임의 요약</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%97%B4%EC%9D%98-%EC%9A%94%EC%95%BD"><i class="fa fa-check"></i><b>3.3.1</b> 열의 요약</a></li>
+<li class="chapter" data-level="3.3.2" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EA%B7%B8%EB%A3%B9%EB%B3%84-%EC%9A%94%EC%95%BD"><i class="fa fa-check"></i><b>3.3.2</b> 그룹별 요약</a></li>
+<li class="chapter" data-level="3.3.3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%9A%94%EC%95%BD"><i class="fa fa-check"></i><b>3.3.3</b> 요약</a></li>
+<li class="chapter" data-level="3.3.4" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%9C%A0%EC%9A%A9%ED%95%9C-%ED%8C%81-%EC%84%A0%ED%83%9D-%ED%97%AC%ED%8D%BC"><i class="fa fa-check"></i><b>3.3.4</b> 유용한 팁: 선택 헬퍼</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84%EC%9D%98-%EA%B2%B0%ED%95%A9"><i class="fa fa-check"></i><b>3.4</b> 데이터프레임의 결합</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EA%B0%84%EB%8B%A8%ED%95%9C-%EA%B2%B0%ED%95%A9"><i class="fa fa-check"></i><b>3.4.1</b> 간단한 결합</a></li>
+<li class="chapter" data-level="3.4.2" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%8B%9D%EB%B3%84%EC%9E%90%EC%9D%98-%EB%B6%88%EC%9D%BC%EC%B9%98"><i class="fa fa-check"></i><b>3.4.2</b> 식별자의 불일치</a></li>
+<li class="chapter" data-level="3.4.3" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EC%9A%94%EC%95%BD-1"><i class="fa fa-check"></i><b>3.4.3</b> 요약</a></li>
+<li class="chapter" data-level="3.4.4" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EA%B0%80%EA%B5%AC%EB%8B%B9-%ED%8F%89%EA%B7%A0-%EC%9D%B8%EC%9B%90%EC%88%98"><i class="fa fa-check"></i><b>3.4.4</b> 가구당 평균 인원수</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="데이터프레임-1.html"><a href="데이터프레임-1.html#%EB%AC%B8%EC%A0%9C"><i class="fa fa-check"></i><b>3.5</b> 문제</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html"><i class="fa fa-check"></i><b>4</b> 자료의 시각화와 분포</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EB%B2%94%EC%A3%BC%ED%98%95-%EC%9E%90%EB%A3%8C%EC%9D%98-%EC%8B%9C%EA%B0%81%ED%99%94"><i class="fa fa-check"></i><b>4.1</b> 범주형 자료의 시각화</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EB%8F%84%EC%88%98%EB%B6%84%ED%8F%AC%ED%91%9C"><i class="fa fa-check"></i><b>4.1.1</b> 도수분포표</a></li>
+<li class="chapter" data-level="4.1.2" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%83%81%EB%8C%80%EB%8F%84%EC%88%98%EB%B9%84%EC%9C%A8"><i class="fa fa-check"></i><b>4.1.2</b> 상대도수(비율)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%9B%90%EA%B7%B8%EB%9E%98%ED%94%84"><i class="fa fa-check"></i><b>4.1.3</b> 원그래프</a></li>
+<li class="chapter" data-level="4.1.4" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EB%A7%89%EB%8C%80%EA%B7%B8%EB%9E%98%ED%94%84"><i class="fa fa-check"></i><b>4.1.4</b> 막대그래프</a></li>
+<li class="chapter" data-level="4.1.5" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EB%B6%84%ED%95%A0%ED%91%9C"><i class="fa fa-check"></i><b>4.1.5</b> 분할표</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%97%B0%EC%86%8D%ED%98%95-%EC%9E%90%EB%A3%8C%EC%9D%98-%EC%8B%9C%EA%B0%81%ED%99%94"><i class="fa fa-check"></i><b>4.2</b> 연속형 자료의 시각화</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%ED%9E%88%EC%8A%A4%ED%86%A0%EA%B7%B8%EB%9E%A8"><i class="fa fa-check"></i><b>4.2.1</b> 히스토그램</a></li>
+<li class="chapter" data-level="4.2.2" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%83%81%EC%9E%90%EA%B7%B8%EB%A6%BC"><i class="fa fa-check"></i><b>4.2.2</b> 상자그림</a></li>
+<li class="chapter" data-level="4.2.3" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%82%B0%EC%A0%90%EB%8F%84"><i class="fa fa-check"></i><b>4.2.3</b> 산점도</a></li>
+<li class="chapter" data-level="4.2.4" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%B0%B8%EA%B3%A0-%EA%B7%B8%EB%A3%B9%EB%B3%84-%EB%B6%84%ED%8F%AC"><i class="fa fa-check"></i><b>4.2.4</b> 참고: 그룹별 분포</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EB%B6%84%ED%8F%AC%EC%99%80-%EC%9A%B0%EC%97%B0%EC%84%B1"><i class="fa fa-check"></i><b>4.3</b> 분포와 우연성</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%84%B1%EC%9D%B8-%EB%82%A8%EC%9E%90%EC%9D%98-%EC%8B%A0%EC%9E%A5"><i class="fa fa-check"></i><b>4.3.1</b> 성인 남자의 신장</a></li>
+<li class="chapter" data-level="4.3.2" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%A0%95%EA%B7%9C%EB%B6%84%ED%8F%AC-%ED%99%95%EB%A5%A0%EB%B0%80%EB%8F%84%ED%95%A8%EC%88%98"><i class="fa fa-check"></i><b>4.3.2</b> 정규분포: 확률밀도함수</a></li>
+<li class="chapter" data-level="4.3.3" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%9D%B4%EC%83%81%EC%A0%90"><i class="fa fa-check"></i><b>4.3.3</b> 이상점</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%ED%99%95%EB%A5%A0"><i class="fa fa-check"></i><b>4.4</b> 확률</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%A3%BC%EC%82%AC%EC%9C%84%EC%99%80-%ED%91%9C%EB%B3%B8%EA%B3%B5%EA%B0%84"><i class="fa fa-check"></i><b>4.4.1</b> 주사위와 표본공간</a></li>
+<li class="chapter" data-level="4.4.2" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%ED%99%95%EB%A5%A0%EC%9D%98-%EA%B8%B0%EC%B4%88-%EA%B7%9C%EC%B9%99"><i class="fa fa-check"></i><b>4.4.2</b> 확률의 기초 규칙</a></li>
+<li class="chapter" data-level="4.4.3" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%83%81%EB%8C%80%EB%8F%84%EC%88%98%EC%99%80-%ED%99%95%EB%A5%A0"><i class="fa fa-check"></i><b>4.4.3</b> 상대도수와 확률</a></li>
+<li class="chapter" data-level="4.4.4" data-path="자료의-시각화와-분포.html"><a href="자료의-시각화와-분포.html#%EC%A0%95%EA%B7%9C%EB%B6%84%ED%8F%AC%EC%97%90%EC%84%9C%EC%9D%98-%ED%99%95%EB%A5%A0"><i class="fa fa-check"></i><b>4.4.4</b> 정규분포에서의 확률</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="관계와-예측.html"><a href="관계와-예측.html"><i class="fa fa-check"></i><b>5</b> 관계와 예측</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="관계와-예측.html"><a href="관계와-예측.html#%EB%91%90-%EB%B3%80%EC%88%98%EC%9D%98-%EA%B4%80%EA%B3%84"><i class="fa fa-check"></i><b>5.1</b> 두 변수의 관계</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%95%84%EB%B2%84%EC%A7%80%EC%99%80-%EC%95%84%EB%93%A4%EC%9D%98-%ED%82%A4"><i class="fa fa-check"></i><b>5.1.1</b> 아버지와 아들의 키</a></li>
+<li class="chapter" data-level="5.1.2" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98"><i class="fa fa-check"></i><b>5.1.2</b> 상관계수</a></li>
+<li class="chapter" data-level="5.1.3" data-path="관계와-예측.html"><a href="관계와-예측.html#%EB%AA%A8%EC%9D%98%EC%8B%A4%ED%97%98-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98%EC%99%80-%EC%82%B0%EC%A0%90%EB%8F%84"><i class="fa fa-check"></i><b>5.1.3</b> 모의실험: 상관계수와 산점도</a></li>
+<li class="chapter" data-level="5.1.4" data-path="관계와-예측.html"><a href="관계와-예측.html#%EB%B9%84%EC%84%A0%ED%98%95-%EA%B4%80%EA%B3%84%EC%99%80-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98"><i class="fa fa-check"></i><b>5.1.4</b> 비선형 관계와 상관계수</a></li>
+<li class="chapter" data-level="5.1.5" data-path="관계와-예측.html"><a href="관계와-예측.html#%EB%B3%80%EC%88%98%EC%9D%98-%ED%91%9C%EC%A4%80%ED%99%94"><i class="fa fa-check"></i><b>5.1.5</b> 변수의 표준화</a></li>
+<li class="chapter" data-level="5.1.6" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%98%88%EC%A0%9C-%ED%82%A4%EC%99%80-%EB%AA%B8%EB%AC%B4%EA%B2%8C%EC%9D%98-%EA%B4%80%EA%B3%84"><i class="fa fa-check"></i><b>5.1.6</b> 예제: 키와 몸무게의 관계</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%84%A0%ED%98%95-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95"><i class="fa fa-check"></i><b>5.2</b> 선형 회귀모형</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%95%84%EB%B2%84%EC%A7%80%EC%99%80-%EC%95%84%EB%93%A4%EC%9D%98-%ED%82%A4-%ED%8F%89%EA%B7%A0%EB%93%A4%EC%9D%98-%EA%B4%80%EA%B3%84"><i class="fa fa-check"></i><b>5.2.1</b> 아버지와 아들의 키: 평균들의 관계</a></li>
+<li class="chapter" data-level="5.2.2" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EB%B2%95"><i class="fa fa-check"></i><b>5.2.2</b> 최소제곱법</a></li>
+<li class="chapter" data-level="5.2.3" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EB%B2%95%EC%9D%98-%ED%95%B4"><i class="fa fa-check"></i><b>5.2.3</b> 최소제곱법의 해</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%84%A0%ED%98%95-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%9D%98-%ED%8F%89%EA%B0%80"><i class="fa fa-check"></i><b>5.3</b> 선형 회귀모형의 평가</a></li>
+<li class="chapter" data-level="5.4" data-path="관계와-예측.html"><a href="관계와-예측.html#r%EC%9D%98-lm-%ED%95%A8%EC%88%98"><i class="fa fa-check"></i><b>5.4</b> R의 <code>lm()</code> 함수</a></li>
+<li class="chapter" data-level="5.5" data-path="관계와-예측.html"><a href="관계와-예측.html#%EC%A0%95%EB%A6%AC-1"><i class="fa fa-check"></i><b>5.5</b> 정리</a></li>
+<li class="chapter" data-level="5.6" data-path="관계와-예측.html"><a href="관계와-예측.html#%EB%AC%B8%EC%A0%9C-1"><i class="fa fa-check"></i><b>5.6</b> 문제</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Built with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R을 활용한 데이터 분석 방법론</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="관계와-예측" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 관계와 예측<a href="관계와-예측.html#%EA%B4%80%EA%B3%84%EC%99%80-%EC%98%88%EC%B8%A1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>이 장에서는 데이터 과학의 핵심 주제인 <strong>변수 간의 관계</strong> 와 <strong>예측</strong> 에 대해 살펴봅니다.</p>
+<p>앞서 말씀드렸듯이, 데이터 과학의 궁극적인 목표 중 하나는 미래를 예측하는 것입니다. 따라서 예측 모형을 구축하기 전에 여러 변수들 사이의 관계를 시각화하고 수치적으로 분석하는 방법을 먼저 익히는 것이 중요합니다.</p>
+<p>이 장에서는 다음과 같은 내용을 다룹니다.</p>
+<ol style="list-style-type: decimal">
+<li>여러 변수 간의 관계를 파악하는 기본적인 시각화 및 수치적 분석 방법</li>
+<li>가장 기초적인 예측 모형인 <strong>단순 선형 회귀모형</strong></li>
+<li>단순 회귀모형을 바탕으로 한 예측의 기본 개념과 해석 방법</li>
+</ol>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="관계와-예측.html#cb383-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb383-2"><a href="관계와-예측.html#cb383-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb383-3"><a href="관계와-예측.html#cb383-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<hr />
+<div id="두-변수의-관계" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> 두 변수의 관계<a href="관계와-예측.html#%EB%91%90-%EB%B3%80%EC%88%98%EC%9D%98-%EA%B4%80%EA%B3%84" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>데이터 과학의 가장 중요한 주제는 <strong>예측(prediction)</strong> 입니다. 데이터 과학에서는 관심 있는 <strong>반응변수(response variable)</strong> 의 값이 <strong>설명변수(explanatory variable, feature)</strong> 의 변화에 따라 어떻게 달라지는지를 파악하고, 이러한 관계를 추정하여 예측을 수행합니다.</p>
+<p>두 변수가 <strong>상관관계(correlation)</strong> 를 가진다는 것은, 주어진 데이터에서 한 변수의 변화를 다른 변수의 변화로 어느 정도 설명할 수 있다는 의미입니다.</p>
+<blockquote>
+<p><strong>주의: 상관관계 ≠ 인과관계</strong><br />
+상관관계가 존재하더라도 두 변수가 서로 직접적인 영향을 미치는 <strong>인과관계(causal relation)</strong> 가 아닐 수 있습니다. 예를 들어 아이스크림 판매량과 에어컨 판매량은 통계적으로 유의한 관계를 보이지만, 이는 제3의 변수인 <strong>기온</strong> 이 두 변수 모두에 영향을 미치기 때문입니다. 이렇게 인과관계를 왜곡하는 제3의 변수를 <strong>잠재변수(confounding variable)</strong> 라고 합니다.</p>
+</blockquote>
+<div id="아버지와-아들의-키" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> 아버지와 아들의 키<a href="관계와-예측.html#%EC%95%84%EB%B2%84%EC%A7%80%EC%99%80-%EC%95%84%EB%93%A4%EC%9D%98-%ED%82%A4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Francis Galton은 영국의 학자로서 1885년에 아버지와 아들의 키 사이의 관계를 데이터에 기반하여 연구하였습니다. Galton의 이러한 경험적 연구는 데이터를 이용한 통계적 관계 분석의 시초로 여겨지고 있습니다.</p>
+<p>1078개 관측값으로 이루어진 아버지와 아들의 키 자료를 데이터프레임 <code>father_son</code> 으로 저장하겠습니다.</p>
+<ul>
+<li><code>fheight</code> : 아버지의 키 (단위: inch)</li>
+<li><code>sheight</code> : 아들의 키 (단위: inch)</li>
+</ul>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="관계와-예측.html#cb384-1" tabindex="-1"></a>url1 <span class="ot">&lt;-</span> <span class="st">&quot;https://uos-bigdata.github.io/bigdata-exercise/_downloads/4480b104e6e159a32c7d5a0b03cf4684/father-and-son.csv&quot;</span></span>
+<span id="cb384-2"><a href="관계와-예측.html#cb384-2" tabindex="-1"></a>father_son <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url1)</span></code></pre></div>
+<pre><code>## Rows: 1078 Columns: 2
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (2): fheight, sheight
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="관계와-예측.html#cb386-1" tabindex="-1"></a><span class="fu">dim</span>(father_son)</span></code></pre></div>
+<pre><code>## [1] 1078    2</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="관계와-예측.html#cb388-1" tabindex="-1"></a><span class="fu">head</span>(father_son, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 2
+##   fheight sheight
+##     &lt;dbl&gt;   &lt;dbl&gt;
+## 1    65.0    59.8
+## 2    63.3    63.2
+## 3    65.0    63.3
+## 4    65.8    62.8
+## 5    61.1    64.3</code></pre>
+<p>이 자료는 단위가 <code>inch</code> 이기 때문에 우리에게 다소 익숙하지 않습니다. 따라서 자료의 단위를 센티미터(<code>cm</code>)로 변환합니다.</p>
+<p><span class="math display">\[
+2.54\ \text{cm} = 1.0\ \text{inch}
+\]</span></p>
+<p>R에서는 dplyr의 <strong><code>mutate()</code></strong> 로 두 열을 한 번에 변환합니다. <code>across()</code> 를 쓰면 더 간결합니다.</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="관계와-예측.html#cb390-1" tabindex="-1"></a>father_son <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb390-2"><a href="관계와-예측.html#cb390-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(fheight, sheight), <span class="sc">~</span> .x <span class="sc">*</span> <span class="fl">2.54</span>))</span>
+<span id="cb390-3"><a href="관계와-예측.html#cb390-3" tabindex="-1"></a></span>
+<span id="cb390-4"><a href="관계와-예측.html#cb390-4" tabindex="-1"></a><span class="fu">head</span>(father_son, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##    fheight sheight
+##      &lt;dbl&gt;   &lt;dbl&gt;
+##  1    165.    152.
+##  2    161.    161.
+##  3    165.    161.
+##  4    167.    159.
+##  5    155.    163.
+##  6    160.    163.
+##  7    166.    163.
+##  8    164.    163.
+##  9    168.    164.
+## 10    170.    163.</code></pre>
+<p>이제 아버지의 키와 아들의 키에 대한 산점도를 그려 관계를 살펴봅니다.</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="관계와-예측.html#cb392-1" tabindex="-1"></a><span class="fu">ggplot</span>(father_son, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb392-2"><a href="관계와-예측.html#cb392-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb392-3"><a href="관계와-예측.html#cb392-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지의 키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들의 키 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb392-4"><a href="관계와-예측.html#cb392-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fs-scatter"></span>
+<img src="_main_files/figure-html/fs-scatter-1.png" alt="아버지와 아들의 키 산점도" width="576" />
+<p class="caption">
+Figure 5.1: 아버지와 아들의 키 산점도
+</p>
+</div>
+<p>산점도에서 <strong>아버지의 키가 증가하면 아들의 키도 증가하는 경향(trend)</strong> 이 나타납니다. 그러나 아버지의 키가 크다고 해서 아들의 키가 반드시 큰 것은 아니며, 반대의 경우도 마찬가지입니다.</p>
+<p>관계를 좀 더 시각적으로 분명하게 보기 위해, 두 변수의 평균값을 산점도에 함께 표시해 보겠습니다. Python의 <code>plt.axvline()</code>, <code>plt.axhline()</code> 에 해당하는 것이 ggplot2의 <strong><code>geom_vline()</code></strong>, <strong><code>geom_hline()</code></strong> 입니다.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="관계와-예측.html#cb393-1" tabindex="-1"></a><span class="fu">summary</span>(father_son)</span></code></pre></div>
+<pre><code>##     fheight         sheight     
+##  Min.   :149.9   Min.   :148.6  
+##  1st Qu.:167.1   1st Qu.:170.0  
+##  Median :172.1   Median :174.3  
+##  Mean   :171.9   Mean   :174.5  
+##  3rd Qu.:176.8   3rd Qu.:179.0  
+##  Max.   :191.6   Max.   :199.0</code></pre>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="관계와-예측.html#cb395-1" tabindex="-1"></a><span class="fu">ggplot</span>(father_son, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb395-2"><a href="관계와-예측.html#cb395-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb395-3"><a href="관계와-예측.html#cb395-3" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(father_son<span class="sc">$</span>fheight), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb395-4"><a href="관계와-예측.html#cb395-4" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(father_son<span class="sc">$</span>sheight), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb395-5"><a href="관계와-예측.html#cb395-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지의 키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들의 키 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb395-6"><a href="관계와-예측.html#cb395-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fs-scatter-mean"></span>
+<img src="_main_files/figure-html/fs-scatter-mean-1.png" alt="평균선을 함께 표시한 산점도" width="576" />
+<p class="caption">
+Figure 5.2: 평균선을 함께 표시한 산점도
+</p>
+</div>
+<p>아버지의 키가 평균보다 크더라도 아들의 키가 전체 아들 평균보다 작은 경우가 있고, 그 반대의 경우도 존재합니다. 그럼에도 불구하고 두 변수는 완벽한 관계는 아니지만 전체적으로 <strong>비례적인 경향</strong> 을 보이고 있습니다.</p>
+</div>
+<div id="상관계수" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> 상관계수<a href="관계와-예측.html#%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>두 변수의 <strong>선형적 비례 관계(linear relation)</strong> 를 수치적으로 나타내는 측도가 <strong>상관계수(correlation coefficient, <span class="math inline">\(r\)</span>)</strong> 입니다.</p>
+<p>두 변수 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> 에 대해 <span class="math inline">\(n\)</span>개의 자료 <span class="math inline">\((x_1, y_1), \ldots, (x_n, y_n)\)</span> 가 있을 때, 평균과 표준편차는 다음과 같습니다.</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i, \qquad
+SD_x = \sqrt{\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}
+\]</span></p>
+<p>상관계수 <span class="math inline">\(r\)</span> 은 다음과 같이 계산합니다.</p>
+<p><span class="math display">\[
+r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{(n-1)\, SD_x\, SD_y}
+\]</span></p>
+<p>상관계수 <span class="math inline">\(r\)</span> 의 성질은 다음과 같습니다.</p>
+<ul>
+<li><span class="math inline">\(r\)</span> 은 <span class="math inline">\(-1\)</span> 과 <span class="math inline">\(1\)</span> 사이의 값을 가집니다.</li>
+<li><span class="math inline">\(r = 1\)</span> 이면 두 변수는 완벽한 <strong>양의</strong> 선형 비례관계가 있습니다.</li>
+<li><span class="math inline">\(r = -1\)</span> 이면 두 변수는 완벽한 <strong>음의</strong> 선형 비례관계가 있습니다.</li>
+<li><span class="math inline">\(r = 0\)</span> 이면 두 변수는 <strong>선형 관계가 없다</strong> 고 말할 수 있습니다.</li>
+<li><span class="math inline">\(|r|\)</span> 이 클수록 선형 관계의 강도가 큽니다.</li>
+</ul>
+<blockquote>
+<p>주의할 점은 <span class="math inline">\(r\)</span> 은 <strong>선형관계</strong> 의 강도를 측정하는 값이므로, 비선형적 관계는 제대로 반영하지 못한다는 것입니다.</p>
+</blockquote>
+<p>R에서 상관계수는 base R의 <strong><code>cor()</code></strong> 함수로 구합니다 (pandas의 <code>.corr()</code> 에 대응). 두 벡터를 주면 값 하나를, 데이터프레임을 주면 상관행렬을 반환합니다.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="관계와-예측.html#cb396-1" tabindex="-1"></a><span class="co"># 두 벡터의 상관계수</span></span>
+<span id="cb396-2"><a href="관계와-예측.html#cb396-2" tabindex="-1"></a><span class="fu">cor</span>(father_son<span class="sc">$</span>fheight, father_son<span class="sc">$</span>sheight)</span></code></pre></div>
+<pre><code>## [1] 0.5013383</code></pre>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="관계와-예측.html#cb398-1" tabindex="-1"></a><span class="co"># 데이터프레임 전체의 상관행렬</span></span>
+<span id="cb398-2"><a href="관계와-예측.html#cb398-2" tabindex="-1"></a><span class="fu">cor</span>(father_son)</span></code></pre></div>
+<pre><code>##           fheight   sheight
+## fheight 1.0000000 0.5013383
+## sheight 0.5013383 1.0000000</code></pre>
+<p>Galton의 자료에서 상관계수가 약 <strong>0.50</strong> 으로 나타납니다. 이는 두 변수 사이에 어느 정도 양의 선형 관계가 존재한다고 볼 수 있습니다.</p>
+</div>
+<div id="모의실험-상관계수와-산점도" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> 모의실험: 상관계수와 산점도<a href="관계와-예측.html#%EB%AA%A8%EC%9D%98%EC%8B%A4%ED%97%98-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98%EC%99%80-%EC%82%B0%EC%A0%90%EB%8F%84" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>상관계수의 값과 두 변수의 관계를 좀 더 이해하기 위해 모의실험으로 자료를 만들어 보겠습니다.</p>
+<p>두 확률변수 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> 가 각각 표준정규분포 <span class="math inline">\(N(0,1)\)</span> 을 따르고 상관계수가 <span class="math inline">\(r\)</span> 인 <strong>이변량 정규분포(bivariate normal distribution)</strong> 에서 난수를 생성합니다. Python의 <code>np.random.multivariate_normal()</code> 에 해당하는 R 함수는 <code>MASS</code> 패키지의 <strong><code>mvrnorm()</code></strong> 입니다.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="관계와-예측.html#cb400-1" tabindex="-1"></a><span class="co"># install.packages(&quot;MASS&quot;)</span></span>
+<span id="cb400-2"><a href="관계와-예측.html#cb400-2" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## 다음의 패키지를 부착합니다: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="관계와-예측.html#cb403-1" tabindex="-1"></a><span class="co"># 상관계수 r 값에 -1 과 1 사이의 값을 지정</span></span>
+<span id="cb403-2"><a href="관계와-예측.html#cb403-2" tabindex="-1"></a>r     <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb403-3"><a href="관계와-예측.html#cb403-3" tabindex="-1"></a>mu    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb403-4"><a href="관계와-예측.html#cb403-4" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r,</span>
+<span id="cb403-5"><a href="관계와-예측.html#cb403-5" tabindex="-1"></a>                  r, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb403-6"><a href="관계와-예측.html#cb403-6" tabindex="-1"></a></span>
+<span id="cb403-7"><a href="관계와-예측.html#cb403-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb403-8"><a href="관계와-예측.html#cb403-8" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> <span class="dv">1078</span>, <span class="at">mu =</span> mu, <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb403-9"><a href="관계와-예측.html#cb403-9" tabindex="-1"></a>sim_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> sim[, <span class="dv">1</span>], <span class="at">y =</span> sim[, <span class="dv">2</span>])</span>
+<span id="cb403-10"><a href="관계와-예측.html#cb403-10" tabindex="-1"></a><span class="fu">head</span>(sim_df, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##            x           y
+## 1 -0.6752089 -0.05742080
+## 2 -1.6011384 -1.08332930
+## 3 -0.5420323  0.43043746
+## 4  0.3847807  0.08439954
+## 5  1.6363246  1.36927491</code></pre>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="관계와-예측.html#cb405-1" tabindex="-1"></a><span class="fu">ggplot</span>(sim_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb405-2"><a href="관계와-예측.html#cb405-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb405-3"><a href="관계와-예측.html#cb405-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;correlation =&quot;</span>, r)) <span class="sc">+</span></span>
+<span id="cb405-4"><a href="관계와-예측.html#cb405-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:sim-scatter"></span>
+<img src="_main_files/figure-html/sim-scatter-1.png" alt="상관계수 r = 0.5 인 모의자료의 산점도" width="528" />
+<p class="caption">
+Figure 5.3: 상관계수 r = 0.5 인 모의자료의 산점도
+</p>
+</div>
+<p>위 코드를 이용하여 <strong>상관계수와 데이터 개수를 인자로 받아 데이터프레임을 만들어 주는 함수</strong> 를 정의해 보겠습니다. R에서 함수는 <code>function(인자) { ... }</code> 형태로 정의하며, 마지막 표현식이 자동으로 반환됩니다.</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="관계와-예측.html#cb406-1" tabindex="-1"></a>random_df_corr <span class="ot">&lt;-</span> <span class="cf">function</span>(r, N) {</span>
+<span id="cb406-2"><a href="관계와-예측.html#cb406-2" tabindex="-1"></a>  Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, r, r, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb406-3"><a href="관계와-예측.html#cb406-3" tabindex="-1"></a>  sim   <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(<span class="at">n =</span> N, <span class="at">mu =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">Sigma =</span> Sigma)</span>
+<span id="cb406-4"><a href="관계와-예측.html#cb406-4" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> sim[, <span class="dv">1</span>], <span class="at">y =</span> sim[, <span class="dv">2</span>])</span>
+<span id="cb406-5"><a href="관계와-예측.html#cb406-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>여러 상관계수 값에 대한 산점도를 한 번에 비교해 봅니다. R에서는 여러 데이터프레임을 이어 붙인 뒤 <strong><code>facet_wrap()</code></strong> 으로 나누어 그리면 편리합니다.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="관계와-예측.html#cb407-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb407-2"><a href="관계와-예측.html#cb407-2" tabindex="-1"></a>r_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.8</span>, <span class="sc">-</span><span class="fl">0.3</span>, <span class="dv">0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>)</span>
+<span id="cb407-3"><a href="관계와-예측.html#cb407-3" tabindex="-1"></a></span>
+<span id="cb407-4"><a href="관계와-예측.html#cb407-4" tabindex="-1"></a>sim_all <span class="ot">&lt;-</span> <span class="fu">lapply</span>(r_values, <span class="cf">function</span>(rr) {</span>
+<span id="cb407-5"><a href="관계와-예측.html#cb407-5" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">random_df_corr</span>(rr, <span class="dv">500</span>)</span>
+<span id="cb407-6"><a href="관계와-예측.html#cb407-6" tabindex="-1"></a>  d<span class="sc">$</span>r <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;r =&quot;</span>, rr)</span>
+<span id="cb407-7"><a href="관계와-예측.html#cb407-7" tabindex="-1"></a>  d</span>
+<span id="cb407-8"><a href="관계와-예측.html#cb407-8" tabindex="-1"></a>}) <span class="sc">|&gt;</span> <span class="fu">bind_rows</span>()</span>
+<span id="cb407-9"><a href="관계와-예측.html#cb407-9" tabindex="-1"></a></span>
+<span id="cb407-10"><a href="관계와-예측.html#cb407-10" tabindex="-1"></a>sim_all<span class="sc">$</span>r <span class="ot">&lt;-</span> <span class="fu">factor</span>(sim_all<span class="sc">$</span>r, <span class="at">levels =</span> <span class="fu">paste</span>(<span class="st">&quot;r =&quot;</span>, r_values))</span>
+<span id="cb407-11"><a href="관계와-예측.html#cb407-11" tabindex="-1"></a></span>
+<span id="cb407-12"><a href="관계와-예측.html#cb407-12" tabindex="-1"></a><span class="fu">ggplot</span>(sim_all, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb407-13"><a href="관계와-예측.html#cb407-13" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb407-14"><a href="관계와-예측.html#cb407-14" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> r) <span class="sc">+</span></span>
+<span id="cb407-15"><a href="관계와-예측.html#cb407-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:sim-facet"></span>
+<img src="_main_files/figure-html/sim-facet-1.png" alt="상관계수 값에 따른 산점도 비교" width="768" />
+<p class="caption">
+Figure 5.4: 상관계수 값에 따른 산점도 비교
+</p>
+</div>
+<p>상관계수가 0.5 이상이면 두 변수가 각각 정규분포를 따른다는 가정에서 생성되는 산점도가 아버지와 아들의 키 자료에서 보았던 산점도와 매우 유사한 패턴을 보입니다.</p>
+</div>
+<div id="비선형-관계와-상관계수" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> 비선형 관계와 상관계수<a href="관계와-예측.html#%EB%B9%84%EC%84%A0%ED%98%95-%EA%B4%80%EA%B3%84%EC%99%80-%EC%83%81%EA%B4%80%EA%B3%84%EC%88%98" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>두 변수가 선형관계가 아닌 특별한 관계를 가지고 있는 경우, 상관계수는 이러한 관계를 제대로 반영하지 못합니다.</p>
+<p>예를 들어 <span class="math inline">\(y = x^2\)</span> 와 같은 이차식 형태의 비선형 관계를 생각해 봅니다.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="관계와-예측.html#cb408-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
+<span id="cb408-2"><a href="관계와-예측.html#cb408-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb408-3"><a href="관계와-예측.html#cb408-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb408-4"><a href="관계와-예측.html#cb408-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">3.0</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="fl">10.0</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb408-5"><a href="관계와-예측.html#cb408-5" tabindex="-1"></a>df_quad <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span>
+<span id="cb408-6"><a href="관계와-예측.html#cb408-6" tabindex="-1"></a></span>
+<span id="cb408-7"><a href="관계와-예측.html#cb408-7" tabindex="-1"></a><span class="fu">ggplot</span>(df_quad, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb408-8"><a href="관계와-예측.html#cb408-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb408-9"><a href="관계와-예측.html#cb408-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:quad-scatter"></span>
+<img src="_main_files/figure-html/quad-scatter-1.png" alt="이차 관계를 가진 두 변수의 산점도" width="528" />
+<p class="caption">
+Figure 5.5: 이차 관계를 가진 두 변수의 산점도
+</p>
+</div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="관계와-예측.html#cb409-1" tabindex="-1"></a><span class="fu">cor</span>(df_quad<span class="sc">$</span>x, df_quad<span class="sc">$</span>y)</span></code></pre></div>
+<pre><code>## [1] -0.03237714</code></pre>
+<p>상관계수는 0에 가까운 값을 갖습니다. 즉, <strong>상관계수가 0이라는 것은 두 변수 사이에 선형관계가 없다는 의미일 뿐, 아무런 관계도 존재하지 않는다는 뜻은 아닙니다.</strong></p>
+</div>
+<div id="변수의-표준화" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> 변수의 표준화<a href="관계와-예측.html#%EB%B3%80%EC%88%98%EC%9D%98-%ED%91%9C%EC%A4%80%ED%99%94" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>앞서 주어진 상관계수 <span class="math inline">\(r\)</span> 의 계산식은 다음과 같이 나타낼 수도 있습니다.</p>
+<p><span class="math display">\[
+r = \frac{1}{n-1} \sum_{i=1}^n
+\left( \frac{x_i - \bar{x}}{SD_x} \right)
+\left( \frac{y_i - \bar{y}}{SD_y} \right)
+= \frac{1}{n-1} \sum_{i=1}^n z_i w_i
+\]</span></p>
+<p>각 관측값에서 평균을 빼고 표준편차로 나누는 작업을 <strong>표준화(standardization)</strong> 라고 합니다.</p>
+<p><span class="math display">\[
+z_i = \frac{x_i - \bar{x}}{SD_x}, \qquad
+w_i = \frac{y_i - \bar{y}}{SD_y}
+\]</span></p>
+<p>표준화된 자료는 평균이 0, 표준편차가 1이 됩니다.</p>
+<p><span class="math display">\[
+\bar{z} = \bar{w} = 0, \qquad SD_z = SD_w = 1
+\]</span></p>
+<p>데이터를 표준화하는 작업은 데이터과학에서 매우 자주 사용됩니다. 여러 변수가 서로 다른 단위를 가지고 있으면 직접 비교하기 어렵고 예측 모형의 성능에도 영향을 주기 때문입니다. 참고로 <strong>상관계수는 단위에 영향을 받지 않으므로 표준화 전후가 언제나 동일</strong> 합니다.</p>
+<p>R에는 표준화를 수행하는 <strong><code>scale()</code></strong> 함수가 base에 내장되어 있습니다. 직접 함수를 정의할 수도 있습니다.</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="관계와-예측.html#cb411-1" tabindex="-1"></a>standardize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb411-2"><a href="관계와-예측.html#cb411-2" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">/</span> <span class="fu">sd</span>(x)</span>
+<span id="cb411-3"><a href="관계와-예측.html#cb411-3" tabindex="-1"></a>}</span>
+<span id="cb411-4"><a href="관계와-예측.html#cb411-4" tabindex="-1"></a></span>
+<span id="cb411-5"><a href="관계와-예측.html#cb411-5" tabindex="-1"></a><span class="fu">standardize</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<pre><code>## [1] -1.3363062 -0.8017837 -0.2672612  0.2672612  0.8017837  1.3363062</code></pre>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="관계와-예측.html#cb413-1" tabindex="-1"></a><span class="co"># base R 의 scale() 도 동일한 결과 (결과는 행렬이므로 as.vector 로 변환)</span></span>
+<span id="cb413-2"><a href="관계와-예측.html#cb413-2" tabindex="-1"></a><span class="fu">as.vector</span>(<span class="fu">scale</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)))</span></code></pre></div>
+<pre><code>## [1] -1.3363062 -0.8017837 -0.2672612  0.2672612  0.8017837  1.3363062</code></pre>
+<p>데이터프레임의 모든 열을 표준화할 때는 dplyr의 <strong><code>across()</code></strong> 를 사용합니다 (pandas의 <code>df.apply(standardize, axis=0)</code> 에 대응).</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="관계와-예측.html#cb415-1" tabindex="-1"></a>father_son_st <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb415-2"><a href="관계와-예측.html#cb415-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), standardize))</span>
+<span id="cb415-3"><a href="관계와-예측.html#cb415-3" tabindex="-1"></a></span>
+<span id="cb415-4"><a href="관계와-예측.html#cb415-4" tabindex="-1"></a><span class="fu">head</span>(father_son_st, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 2
+##   fheight sheight
+##     &lt;dbl&gt;   &lt;dbl&gt;
+## 1  -0.961   -3.16
+## 2  -1.62    -1.94
+## 3  -0.995   -1.90
+## 4  -0.705   -2.09
+## 5  -2.39    -1.56</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="관계와-예측.html#cb417-1" tabindex="-1"></a><span class="fu">summary</span>(father_son_st)</span></code></pre></div>
+<pre><code>##     fheight            sheight        
+##  Min.   :-3.16194   Min.   :-3.61565  
+##  1st Qu.:-0.69197   1st Qu.:-0.62274  
+##  Median : 0.02896   Median :-0.02425  
+##  Mean   : 0.00000   Mean   : 0.00000  
+##  3rd Qu.: 0.69799   3rd Qu.: 0.63307  
+##  Max.   : 2.82230   Max.   : 3.43934</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="관계와-예측.html#cb419-1" tabindex="-1"></a><span class="co"># 표준편차 확인</span></span>
+<span id="cb419-2"><a href="관계와-예측.html#cb419-2" tabindex="-1"></a><span class="fu">sapply</span>(father_son_st, sd)</span></code></pre></div>
+<pre><code>## fheight sheight 
+##       1       1</code></pre>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="관계와-예측.html#cb421-1" tabindex="-1"></a><span class="co"># 표준화해도 상관계수는 동일</span></span>
+<span id="cb421-2"><a href="관계와-예측.html#cb421-2" tabindex="-1"></a><span class="fu">cor</span>(father_son_st)</span></code></pre></div>
+<pre><code>##           fheight   sheight
+## fheight 1.0000000 0.5013383
+## sheight 0.5013383 1.0000000</code></pre>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="관계와-예측.html#cb423-1" tabindex="-1"></a><span class="fu">ggplot</span>(father_son_st, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb423-2"><a href="관계와-예측.html#cb423-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb423-3"><a href="관계와-예측.html#cb423-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;표준화된 아버지의 키&quot;</span>, <span class="at">y =</span> <span class="st">&quot;표준화된 아들의 키&quot;</span>) <span class="sc">+</span></span>
+<span id="cb423-4"><a href="관계와-예측.html#cb423-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fs-scatter-st"></span>
+<img src="_main_files/figure-html/fs-scatter-st-1.png" alt="표준화된 자료의 산점도" width="528" />
+<p class="caption">
+Figure 5.6: 표준화된 자료의 산점도
+</p>
+</div>
+</div>
+<div id="예제-키와-몸무게의-관계" class="section level3 hasAnchor" number="5.1.6">
+<h3><span class="header-section-number">5.1.6</span> 예제: 키와 몸무게의 관계<a href="관계와-예측.html#%EC%98%88%EC%A0%9C-%ED%82%A4%EC%99%80-%EB%AA%B8%EB%AC%B4%EA%B2%8C%EC%9D%98-%EA%B4%80%EA%B3%84" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>국민체력100에서 얻은 체력측정 데이터에서 키와 몸무게의 관계를 살펴봅니다.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="관계와-예측.html#cb424-1" tabindex="-1"></a>url2 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/minstat/edu/main/physical_test_2018_data.csv&quot;</span></span>
+<span id="cb424-2"><a href="관계와-예측.html#cb424-2" tabindex="-1"></a>physical_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url2)</span></code></pre></div>
+<pre><code>## Rows: 1874 Columns: 18
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (4): CENTER_NM, CERT_GBN, AGE_GBN, TEST_GEN
+## dbl (14): TEST_AGE, ITEM_F001, ITEM_F002, ITEM_F003, ITEM_F004, ITEM_F005, ITEM_F006, ITEM_F007, ITEM_F008, ITEM_F012, ITEM_F018, ITEM_F0...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="관계와-예측.html#cb426-1" tabindex="-1"></a>physical_01 <span class="ot">&lt;-</span> physical_data <span class="sc">|&gt;</span> </span>
+<span id="cb426-2"><a href="관계와-예측.html#cb426-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">gender    =</span> TEST_GEN,</span>
+<span id="cb426-3"><a href="관계와-예측.html#cb426-3" tabindex="-1"></a>         <span class="at">age    =</span> TEST_AGE,</span>
+<span id="cb426-4"><a href="관계와-예측.html#cb426-4" tabindex="-1"></a>         <span class="at">height =</span> ITEM_F001,</span>
+<span id="cb426-5"><a href="관계와-예측.html#cb426-5" tabindex="-1"></a>         <span class="at">weight =</span> ITEM_F002)</span>
+<span id="cb426-6"><a href="관계와-예측.html#cb426-6" tabindex="-1"></a></span>
+<span id="cb426-7"><a href="관계와-예측.html#cb426-7" tabindex="-1"></a><span class="fu">head</span>(physical_01, <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 4
+##   gender   age height weight
+##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 M         33   159.   57.2
+## 2 F         48   156.   52.9
+## 3 M         22   175.   96.2
+## 4 M         29   179.   79.4
+## 5 F         31   160.   50.2</code></pre>
+<p>19세 이상 성인 <strong>남자</strong> 의 키와 몸무게 관계를 산점도로 그리고 상관계수를 구합니다.</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="관계와-예측.html#cb428-1" tabindex="-1"></a>physical_M <span class="ot">&lt;-</span> physical_01 <span class="sc">|&gt;</span> <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">&quot;M&quot;</span>, age <span class="sc">&gt;=</span> <span class="dv">19</span>)</span>
+<span id="cb428-2"><a href="관계와-예측.html#cb428-2" tabindex="-1"></a></span>
+<span id="cb428-3"><a href="관계와-예측.html#cb428-3" tabindex="-1"></a><span class="fu">ggplot</span>(physical_M, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb428-4"><a href="관계와-예측.html#cb428-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb428-5"><a href="관계와-예측.html#cb428-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;몸무게 (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb428-6"><a href="관계와-예측.html#cb428-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:male-scatter"></span>
+<img src="_main_files/figure-html/male-scatter-1.png" alt="성인 남자의 키와 몸무게" width="528" />
+<p class="caption">
+Figure 5.7: 성인 남자의 키와 몸무게
+</p>
+</div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="관계와-예측.html#cb429-1" tabindex="-1"></a><span class="fu">cor</span>(physical_M<span class="sc">$</span>height, physical_M<span class="sc">$</span>weight)</span></code></pre></div>
+<pre><code>## [1] 0.5238446</code></pre>
+<p>19세 이상 성인 <strong>여자</strong> 에 대해서도 같은 분석을 수행합니다.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="관계와-예측.html#cb431-1" tabindex="-1"></a>physical_F <span class="ot">&lt;-</span> physical_01 <span class="sc">|&gt;</span> <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">&quot;F&quot;</span>, age <span class="sc">&gt;=</span> <span class="dv">19</span>)</span>
+<span id="cb431-2"><a href="관계와-예측.html#cb431-2" tabindex="-1"></a></span>
+<span id="cb431-3"><a href="관계와-예측.html#cb431-3" tabindex="-1"></a><span class="fu">ggplot</span>(physical_F, <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb431-4"><a href="관계와-예측.html#cb431-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb431-5"><a href="관계와-예측.html#cb431-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;몸무게 (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb431-6"><a href="관계와-예측.html#cb431-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:female-scatter"></span>
+<img src="_main_files/figure-html/female-scatter-1.png" alt="성인 여자의 키와 몸무게" width="528" />
+<p class="caption">
+Figure 5.8: 성인 여자의 키와 몸무게
+</p>
+</div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="관계와-예측.html#cb432-1" tabindex="-1"></a><span class="fu">cor</span>(physical_F<span class="sc">$</span>height, physical_F<span class="sc">$</span>weight)</span></code></pre></div>
+<pre><code>## [1] 0.3535921</code></pre>
+<p>남자의 상관계수가 여자보다 다소 높게 나타납니다. 다만 주의할 점은 이러한 결과가 우리나라 전체 남녀의 일반적인 관계를 나타내는 것은 아닐 수 있다는 것입니다. 국민체력100 데이터가 <strong>확률표본이 아니기 때문</strong> 입니다.</p>
+<p>성별을 나누지 않은 하나의 데이터프레임에서 <strong>그룹별 상관계수</strong> 를 한 번에 구할 수도 있습니다. Python의 <code>groupby().corr()</code> 에 해당하는 작업을 dplyr에서는 <code>group_by()</code> + <code>summarise()</code> 로 간결하게 처리합니다.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="관계와-예측.html#cb434-1" tabindex="-1"></a>physical_01 <span class="sc">|&gt;</span> </span>
+<span id="cb434-2"><a href="관계와-예측.html#cb434-2" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">19</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb434-3"><a href="관계와-예측.html#cb434-3" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">|&gt;</span> </span>
+<span id="cb434-4"><a href="관계와-예측.html#cb434-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(height, weight),</span>
+<span id="cb434-5"><a href="관계와-예측.html#cb434-5" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   gender correlation     n
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;int&gt;
+## 1 F            0.354   720
+## 2 M            0.524   920</code></pre>
+<p>성별에 따라 색을 구분한 산점도로 두 집단을 함께 볼 수도 있습니다.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="관계와-예측.html#cb436-1" tabindex="-1"></a>physical_01 <span class="sc">|&gt;</span> </span>
+<span id="cb436-2"><a href="관계와-예측.html#cb436-2" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">19</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb436-3"><a href="관계와-예측.html#cb436-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> weight, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb436-4"><a href="관계와-예측.html#cb436-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb436-5"><a href="관계와-예측.html#cb436-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;몸무게 (kg)&quot;</span>, <span class="at">color =</span> <span class="st">&quot;성별&quot;</span>) <span class="sc">+</span></span>
+<span id="cb436-6"><a href="관계와-예측.html#cb436-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:both-scatter"></span>
+<img src="_main_files/figure-html/both-scatter-1.png" alt="성별로 구분한 키와 몸무게" width="576" />
+<p class="caption">
+Figure 5.9: 성별로 구분한 키와 몸무게
+</p>
+</div>
+<hr />
+</div>
+</div>
+<div id="선형-회귀모형" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> 선형 회귀모형<a href="관계와-예측.html#%EC%84%A0%ED%98%95-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>관심 있는 반응변수와 설명변수의 함수적 관계를 추론할 때 사용할 수 있는 가장 단순하고 기본적인 모형이 <strong>선형 회귀모형(linear regression model)</strong> 입니다.</p>
+<div id="아버지와-아들의-키-평균들의-관계" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 아버지와 아들의 키: 평균들의 관계<a href="관계와-예측.html#%EC%95%84%EB%B2%84%EC%A7%80%EC%99%80-%EC%95%84%EB%93%A4%EC%9D%98-%ED%82%A4-%ED%8F%89%EA%B7%A0%EB%93%A4%EC%9D%98-%EA%B4%80%EA%B3%84" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>앞 절에서 살펴본 Galton의 데이터에서 아버지의 키가 증가하면 아들의 키가 증가하는 <strong>경향</strong> 을 보았습니다.</p>
+<p>여기서 “경향(trend)”이라는 말에 주의해야 합니다. 경향을 보인다는 것은 아버지의 키를 알고 있다고 해서 아들의 키를 <strong>정확하게</strong> 예측할 수 있다는 뜻이 아니라, 아버지의 키가 증가하면 <strong>평균적으로</strong> 아들의 키도 증가하는 경향이 있다는 의미입니다.</p>
+<p>그렇다면 이러한 “경향”을 통계적으로 어떻게 구체적으로 나타낼 수 있을까요? 아버지의 키를 몇 개의 구간으로 나누어 생각해 보겠습니다.</p>
+<ul>
+<li>그룹 1: 140 &lt; 아버지의 키 ≤ 160</li>
+<li>그룹 2: 160 &lt; 아버지의 키 ≤ 170</li>
+<li>그룹 3: 170 &lt; 아버지의 키 ≤ 180</li>
+<li>그룹 4: 180 &lt; 아버지의 키 ≤ 200</li>
+</ul>
+<p>Python pandas의 <code>pd.cut()</code> 에 해당하는 R 함수는 base R의 <strong><code>cut()</code></strong> 입니다. 기본적으로 <code>(a, b]</code> 형태의 구간(왼쪽 열림, 오른쪽 닫힘)으로 나누어 주며, 이는 pandas의 <code>include_lowest = False</code> 와 동일한 동작입니다.</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="관계와-예측.html#cb437-1" tabindex="-1"></a>father_son <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb437-2"><a href="관계와-예측.html#cb437-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group1 =</span> <span class="fu">cut</span>(fheight, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">200</span>)))</span>
+<span id="cb437-3"><a href="관계와-예측.html#cb437-3" tabindex="-1"></a></span>
+<span id="cb437-4"><a href="관계와-예측.html#cb437-4" tabindex="-1"></a><span class="fu">head</span>(father_son, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   fheight sheight group1   
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;    
+## 1    165.    152. (160,170]
+## 2    161.    161. (160,170]
+## 3    165.    161. (160,170]</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="관계와-예측.html#cb439-1" tabindex="-1"></a><span class="fu">levels</span>(father_son<span class="sc">$</span>group1)</span></code></pre></div>
+<pre><code>## [1] &quot;(140,160]&quot; &quot;(160,170]&quot; &quot;(170,180]&quot; &quot;(180,200]&quot;</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="관계와-예측.html#cb441-1" tabindex="-1"></a><span class="fu">table</span>(father_son<span class="sc">$</span>group1)</span></code></pre></div>
+<pre><code>## 
+## (140,160] (160,170] (170,180] (180,200] 
+##        48       372       521       137</code></pre>
+<p>각 그룹의 아버지 키 평균과 아들 키 평균을 계산해 봅니다.</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="관계와-예측.html#cb443-1" tabindex="-1"></a>group_summary_1 <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb443-2"><a href="관계와-예측.html#cb443-2" tabindex="-1"></a>  <span class="fu">group_by</span>(group1) <span class="sc">|&gt;</span> </span>
+<span id="cb443-3"><a href="관계와-예측.html#cb443-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fheight =</span> <span class="fu">mean</span>(fheight),</span>
+<span id="cb443-4"><a href="관계와-예측.html#cb443-4" tabindex="-1"></a>            <span class="at">sheight =</span> <span class="fu">mean</span>(sheight),</span>
+<span id="cb443-5"><a href="관계와-예측.html#cb443-5" tabindex="-1"></a>            <span class="at">n       =</span> <span class="fu">n</span>())</span>
+<span id="cb443-6"><a href="관계와-예측.html#cb443-6" tabindex="-1"></a></span>
+<span id="cb443-7"><a href="관계와-예측.html#cb443-7" tabindex="-1"></a>group_summary_1</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 4
+##   group1    fheight sheight     n
+##   &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+## 1 (140,160]    157.    167.    48
+## 2 (160,170]    166.    171.   372
+## 3 (170,180]    175.    176.   521
+## 4 (180,200]    183.    180.   137</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="관계와-예측.html#cb445-1" tabindex="-1"></a><span class="fu">ggplot</span>(group_summary_1, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb445-2"><a href="관계와-예측.html#cb445-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb445-3"><a href="관계와-예측.html#cb445-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지 키의 그룹 평균 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들 키의 그룹 평균 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb445-4"><a href="관계와-예측.html#cb445-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:group1-plot"></span>
+<img src="_main_files/figure-html/group1-plot-1.png" alt="4개 구간의 그룹별 평균" width="528" />
+<p class="caption">
+Figure 5.10: 4개 구간의 그룹별 평균
+</p>
+</div>
+<p>아버지의 키 평균이 증가할수록 아들의 키 평균도 함께 증가하며, 네 개의 그룹별 평균값이 마치 <strong>하나의 직선 위에 놓여 있는 것처럼</strong> 보입니다. 전체 산점도에서는 다소 불확실하게 보였던 경향이, 그룹별 평균으로 요약하니 훨씬 명확한 형태로 나타납니다.</p>
+<p>이번에는 구간을 더 잘게 나누어 봅니다. <code>cut()</code> 의 <code>breaks</code> 에 정수 하나를 주면 <strong>같은 길이의 구간</strong> 으로 자동 분할합니다 (pandas의 <code>bins = 10</code> 에 대응).</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="관계와-예측.html#cb446-1" tabindex="-1"></a>father_son <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb446-2"><a href="관계와-예측.html#cb446-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group2 =</span> <span class="fu">cut</span>(fheight, <span class="at">breaks =</span> <span class="dv">10</span>))</span>
+<span id="cb446-3"><a href="관계와-예측.html#cb446-3" tabindex="-1"></a></span>
+<span id="cb446-4"><a href="관계와-예측.html#cb446-4" tabindex="-1"></a>group_summary_2 <span class="ot">&lt;-</span> father_son <span class="sc">|&gt;</span> </span>
+<span id="cb446-5"><a href="관계와-예측.html#cb446-5" tabindex="-1"></a>  <span class="fu">group_by</span>(group2) <span class="sc">|&gt;</span> </span>
+<span id="cb446-6"><a href="관계와-예측.html#cb446-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fheight =</span> <span class="fu">mean</span>(fheight),</span>
+<span id="cb446-7"><a href="관계와-예측.html#cb446-7" tabindex="-1"></a>            <span class="at">sheight =</span> <span class="fu">mean</span>(sheight),</span>
+<span id="cb446-8"><a href="관계와-예측.html#cb446-8" tabindex="-1"></a>            <span class="at">n       =</span> <span class="fu">n</span>())</span>
+<span id="cb446-9"><a href="관계와-예측.html#cb446-9" tabindex="-1"></a></span>
+<span id="cb446-10"><a href="관계와-예측.html#cb446-10" tabindex="-1"></a>group_summary_2</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 4
+##    group2    fheight sheight     n
+##    &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+##  1 (150,154]    152.    164.     7
+##  2 (154,158]    156.    167.    19
+##  3 (158,162]    161.    169.    68
+##  4 (162,167]    165.    171.   148
+##  5 (167,171]    169.    172.   219
+##  6 (171,175]    173.    175.   249
+##  7 (175,179]    177.    177.   205
+##  8 (179,183]    181.    179.    99
+##  9 (183,187]    185.    182.    55
+## 10 (187,192]    190.    181.     9</code></pre>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="관계와-예측.html#cb448-1" tabindex="-1"></a><span class="fu">ggplot</span>(group_summary_2, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb448-2"><a href="관계와-예측.html#cb448-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb448-3"><a href="관계와-예측.html#cb448-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지 키의 그룹 평균 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들 키의 그룹 평균 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb448-4"><a href="관계와-예측.html#cb448-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:group2-plot"></span>
+<img src="_main_files/figure-html/group2-plot-1.png" alt="10개 구간의 그룹별 평균" width="528" />
+<p class="caption">
+Figure 5.11: 10개 구간의 그룹별 평균
+</p>
+</div>
+<p>10개 구간의 평균들도 하나의 직선과 같은 형태를 보입니다. 각 구간에 대한 아버지와 아들의 키 평균은 매우 단순한 일차식으로 나타낼 수 있습니다.</p>
+<p><span class="math display">\[
+\text{mean of son&#39;s heights} \approx \beta_0 + \beta_1 (\text{mean of father&#39;s heights})
+\]</span></p>
+<p>이제 구간별 평균을 전체 자료의 산점도와 함께 표시해 봅니다.</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="관계와-예측.html#cb449-1" tabindex="-1"></a><span class="fu">ggplot</span>(father_son, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb449-2"><a href="관계와-예측.html#cb449-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb449-3"><a href="관계와-예측.html#cb449-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> group_summary_2, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb449-4"><a href="관계와-예측.html#cb449-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지의 키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들의 키 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb449-5"><a href="관계와-예측.html#cb449-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:group2-overlay"></span>
+<img src="_main_files/figure-html/group2-overlay-1.png" alt="전체 산점도와 그룹별 평균(빨간 점)" width="576" />
+<p class="caption">
+Figure 5.12: 전체 산점도와 그룹별 평균(빨간 점)
+</p>
+</div>
+<p>빨간 점들은 주어진 아버지 키 구간에서 아들 키의 평균값입니다. 두 평균이 직선과 같은 관계를 가진다는 것을 확인할 수 있습니다.</p>
+<p><strong>선형 회귀모형</strong> 은 반응변수 <span class="math inline">\(y\)</span> 의 <strong>평균</strong> 이 설명변수 <span class="math inline">\(x\)</span> 의 값에 따라 직선으로 변하는 것을 나타내는 모형입니다.</p>
+<p><span class="math display">\[
+E(y \mid x) = \beta_0 + \beta_1 x
+\]</span></p>
+<p>여기서 <span class="math inline">\(E(y \mid x)\)</span> 는 설명변수 <span class="math inline">\(x\)</span> 의 값이 주어졌을 때 반응변수 <span class="math inline">\(y\)</span> 의 평균(Expectation, Mean)을 의미합니다.</p>
+</div>
+<div id="최소제곱법" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> 최소제곱법<a href="관계와-예측.html#%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EB%B2%95" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="최소제곱법의-기준" class="section level4 hasAnchor" number="5.2.2.1">
+<h4><span class="header-section-number">5.2.2.1</span> 최소제곱법의 기준<a href="관계와-예측.html#%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EB%B2%95%EC%9D%98-%EA%B8%B0%EC%A4%80" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>선형 회귀모형에서 직선의 기울기 <span class="math inline">\(\beta_1\)</span> 과 절편 <span class="math inline">\(\beta_0\)</span> 을 데이터를 이용하여 결정하는 기준과 방법을 알아봅니다.</p>
+<p><strong>최소제곱법(least squares method)</strong> 은 설명변수의 값 <span class="math inline">\(x_i\)</span> 에 대하여 실제 관측한 반응변수의 값 <span class="math inline">\(y_i\)</span> 와 회귀직선 위의 값 <span class="math inline">\(\beta_0 + \beta_1 x_i\)</span> 가 가장 가깝게 나타나도록 <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> 을 결정하는 방법입니다.</p>
+<p><span class="math display">\[
+\min_{\beta_0,\, \beta_1} \; \frac{1}{n} \sum_{i=1}^n \bigl(y_i - [\beta_0 + \beta_1 x_i]\bigr)^2
+\]</span></p>
+<p>여기서 관측값과 직선 위의 값의 차이를 <strong>오차(error)</strong> 라고 부릅니다.</p>
+<p><span class="math display">\[
+\text{error}_i = y_i - (\beta_0 + \beta_1 x_i) = y_i - E(y_i \mid x_i)
+\]</span></p>
+</div>
+<div id="평균제곱오차" class="section level4 hasAnchor" number="5.2.2.2">
+<h4><span class="header-section-number">5.2.2.2</span> 평균제곱오차<a href="관계와-예측.html#%ED%8F%89%EA%B7%A0%EC%A0%9C%EA%B3%B1%EC%98%A4%EC%B0%A8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>절편과 기울기가 주어졌을 때 오차들을 제곱하여 평균한 값을 <strong>평균제곱오차(Mean Squared Error, MSE)</strong> 라고 합니다.</p>
+<p><span class="math display">\[
+mse(\beta_0, \beta_1)
+= \frac{1}{n} \sum_{i=1}^n \bigl(y_i - [\beta_0 + \beta_1 x_i]\bigr)^2
+= \frac{1}{n} \sum_{i=1}^n \text{error}_i^2
+\]</span></p>
+<p>절편과 기울기가 주어진 경우, 회귀직선과 오차를 그림으로 나타내고 평균제곱오차를 계산해 주는 함수 <code>least_squares_error()</code> 를 정의해 봅니다. R에서는 ggplot 객체를 함수 안에서 만들어 <code>print()</code> 로 출력하고, MSE 값을 반환하도록 작성합니다.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="관계와-예측.html#cb450-1" tabindex="-1"></a>least_squares_error <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_name, y_name,</span>
+<span id="cb450-2"><a href="관계와-예측.html#cb450-2" tabindex="-1"></a>                                intercept, slope,</span>
+<span id="cb450-3"><a href="관계와-예측.html#cb450-3" tabindex="-1"></a>                                <span class="at">percent_point_errors =</span> <span class="fl">0.02</span>) {</span>
+<span id="cb450-4"><a href="관계와-예측.html#cb450-4" tabindex="-1"></a>  <span class="co"># 목적: 주어진 절편과 기울기로 회귀직선을 그리고 평균제곱오차(mse)를 계산</span></span>
+<span id="cb450-5"><a href="관계와-예측.html#cb450-5" tabindex="-1"></a>  <span class="co"># df      : 데이터프레임</span></span>
+<span id="cb450-6"><a href="관계와-예측.html#cb450-6" tabindex="-1"></a>  <span class="co"># x_name  : 설명변수의 열 이름 (문자열)</span></span>
+<span id="cb450-7"><a href="관계와-예측.html#cb450-7" tabindex="-1"></a>  <span class="co"># y_name  : 반응변수의 열 이름 (문자열)</span></span>
+<span id="cb450-8"><a href="관계와-예측.html#cb450-8" tabindex="-1"></a>  <span class="co"># percent_point_errors : 오차(빨간 선)를 표시할 데이터의 비율</span></span>
+<span id="cb450-9"><a href="관계와-예측.html#cb450-9" tabindex="-1"></a></span>
+<span id="cb450-10"><a href="관계와-예측.html#cb450-10" tabindex="-1"></a>  x <span class="ot">&lt;-</span> df[[x_name]]</span>
+<span id="cb450-11"><a href="관계와-예측.html#cb450-11" tabindex="-1"></a>  y <span class="ot">&lt;-</span> df[[y_name]]</span>
+<span id="cb450-12"><a href="관계와-예측.html#cb450-12" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb450-13"><a href="관계와-예측.html#cb450-13" tabindex="-1"></a></span>
+<span id="cb450-14"><a href="관계와-예측.html#cb450-14" tabindex="-1"></a>  <span class="co"># 예측값과 오차</span></span>
+<span id="cb450-15"><a href="관계와-예측.html#cb450-15" tabindex="-1"></a>  y_hat <span class="ot">&lt;-</span> intercept <span class="sc">+</span> slope <span class="sc">*</span> x</span>
+<span id="cb450-16"><a href="관계와-예측.html#cb450-16" tabindex="-1"></a>  mse   <span class="ot">&lt;-</span> <span class="fu">mean</span>((y <span class="sc">-</span> y_hat)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb450-17"><a href="관계와-예측.html#cb450-17" tabindex="-1"></a></span>
+<span id="cb450-18"><a href="관계와-예측.html#cb450-18" tabindex="-1"></a>  <span class="co"># 오차를 표시할 점을 임의로 선택</span></span>
+<span id="cb450-19"><a href="관계와-예측.html#cb450-19" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb450-20"><a href="관계와-예측.html#cb450-20" tabindex="-1"></a>  show <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> percent_point_errors) <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb450-21"><a href="관계와-예측.html#cb450-21" tabindex="-1"></a>  seg  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x[show], <span class="at">y =</span> y[show], <span class="at">yend =</span> y_hat[show])</span>
+<span id="cb450-22"><a href="관계와-예측.html#cb450-22" tabindex="-1"></a></span>
+<span id="cb450-23"><a href="관계와-예측.html#cb450-23" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> .data[[x_name]], <span class="at">y =</span> .data[[y_name]])) <span class="sc">+</span></span>
+<span id="cb450-24"><a href="관계와-예측.html#cb450-24" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb450-25"><a href="관계와-예측.html#cb450-25" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="at">data =</span> seg,</span>
+<span id="cb450-26"><a href="관계와-예측.html#cb450-26" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">xend =</span> x, <span class="at">y =</span> y, <span class="at">yend =</span> yend),</span>
+<span id="cb450-27"><a href="관계와-예측.html#cb450-27" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
+<span id="cb450-28"><a href="관계와-예측.html#cb450-28" tabindex="-1"></a>                 <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb450-29"><a href="관계와-예측.html#cb450-29" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> intercept, <span class="at">slope =</span> slope,</span>
+<span id="cb450-30"><a href="관계와-예측.html#cb450-30" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb450-31"><a href="관계와-예측.html#cb450-31" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">sprintf</span>(<span class="st">&quot;intercept = %.2f, slope = %.2f, mse = %.2f&quot;</span>,</span>
+<span id="cb450-32"><a href="관계와-예측.html#cb450-32" tabindex="-1"></a>                         intercept, slope, mse)) <span class="sc">+</span></span>
+<span id="cb450-33"><a href="관계와-예측.html#cb450-33" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb450-34"><a href="관계와-예측.html#cb450-34" tabindex="-1"></a></span>
+<span id="cb450-35"><a href="관계와-예측.html#cb450-35" tabindex="-1"></a>  <span class="fu">print</span>(p)</span>
+<span id="cb450-36"><a href="관계와-예측.html#cb450-36" tabindex="-1"></a>  mse</span>
+<span id="cb450-37"><a href="관계와-예측.html#cb450-37" tabindex="-1"></a>}</span></code></pre></div>
+<p>절편 <span class="math inline">\(\beta_0 = 20.0\)</span>, 기울기 <span class="math inline">\(\beta_1 = 0.8\)</span> 인 경우입니다.</p>
+<p><span class="math display">\[
+E(y \mid x) = 20.0 + 0.8x, \qquad
+\text{error}_i = y_i - [20.0 + 0.8 x_i]
+\]</span></p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="관계와-예측.html#cb451-1" tabindex="-1"></a>mse_1 <span class="ot">&lt;-</span> <span class="fu">least_squares_error</span>(father_son, <span class="st">&quot;fheight&quot;</span>, <span class="st">&quot;sheight&quot;</span>,</span>
+<span id="cb451-2"><a href="관계와-예측.html#cb451-2" tabindex="-1"></a>                             <span class="at">intercept =</span> <span class="fl">20.0</span>, <span class="at">slope =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:lse-1"></span>
+<img src="_main_files/figure-html/lse-1-1.png" alt="절편 20.0, 기울기 0.8 인 직선과 오차" width="576" />
+<p class="caption">
+Figure 5.13: 절편 20.0, 기울기 0.8 인 직선과 오차
+</p>
+</div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="관계와-예측.html#cb452-1" tabindex="-1"></a>mse_1</span></code></pre></div>
+<pre><code>## [1] 328.3975</code></pre>
+<p>이번에는 절편 <span class="math inline">\(\beta_0 = 25.0\)</span>, 기울기 <span class="math inline">\(\beta_1 = 0.9\)</span> 인 경우입니다.</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="관계와-예측.html#cb454-1" tabindex="-1"></a>mse_2 <span class="ot">&lt;-</span> <span class="fu">least_squares_error</span>(father_son, <span class="st">&quot;fheight&quot;</span>, <span class="st">&quot;sheight&quot;</span>,</span>
+<span id="cb454-2"><a href="관계와-예측.html#cb454-2" tabindex="-1"></a>                             <span class="at">intercept =</span> <span class="fl">25.0</span>, <span class="at">slope =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:lse-2"></span>
+<img src="_main_files/figure-html/lse-2-1.png" alt="절편 25.0, 기울기 0.9 인 직선과 오차" width="576" />
+<p class="caption">
+Figure 5.14: 절편 25.0, 기울기 0.9 인 직선과 오차
+</p>
+</div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="관계와-예측.html#cb455-1" tabindex="-1"></a>mse_2</span></code></pre></div>
+<pre><code>## [1] 73.29044</code></pre>
+<p>절편과 기울기가 달라지면 평균제곱오차의 크기도 함께 변합니다. 두 번째 직선의 MSE가 훨씬 작으므로, 데이터를 더 잘 설명하는 직선이라 할 수 있습니다.</p>
+</div>
+</div>
+<div id="최소제곱법의-해" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> 최소제곱법의 해<a href="관계와-예측.html#%EC%B5%9C%EC%86%8C%EC%A0%9C%EA%B3%B1%EB%B2%95%EC%9D%98-%ED%95%B4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>그렇다면 평균제곱오차를 최소화하는 <strong>최적의</strong> 절편과 기울기는 어떻게 구할까요?</p>
+<div id="미분을-이용한-유도" class="section level4 hasAnchor" number="5.2.3.1">
+<h4><span class="header-section-number">5.2.3.1</span> 미분을 이용한 유도<a href="관계와-예측.html#%EB%AF%B8%EB%B6%84%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9C%A0%EB%8F%84" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>제곱오차합(SSE)을 최소화해도 동일한 해를 얻습니다.</p>
+<p><span class="math display">\[
+S(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+\]</span></p>
+<p><strong>절편 <span class="math inline">\(\beta_0\)</span> 에 대한 편미분:</strong></p>
+<p><span class="math display">\[
+\frac{\partial S}{\partial \beta_0}
+= -2 \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i) = 0
+\]</span></p>
+<p>이를 정리하면 <span class="math inline">\(\sum y_i = n\beta_0 + \beta_1 \sum x_i\)</span> 이고, 양변을 <span class="math inline">\(n\)</span> 으로 나누면</p>
+<p><span class="math display">\[
+\bar{y} = \beta_0 + \beta_1 \bar{x}
+\quad \Longrightarrow \quad
+\beta_0 = \bar{y} - \beta_1 \bar{x}
+\]</span></p>
+<p><strong>기울기 <span class="math inline">\(\beta_1\)</span> 에 대한 편미분:</strong></p>
+<p><span class="math display">\[
+\frac{\partial S}{\partial \beta_1}
+= -2 \sum_{i=1}^n x_i (y_i - \beta_0 - \beta_1 x_i) = 0
+\]</span></p>
+<p>여기에 <span class="math inline">\(\beta_0 = \bar{y} - \beta_1 \bar{x}\)</span> 를 대입하여 정리하면 다음을 얻습니다.</p>
+<p><span class="math display">\[
+\hat{\beta}_1
+= \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}
+       {\sum_{i=1}^n (x_i - \bar{x})^2}, \qquad
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\]</span></p>
+<p>이 해는 상관계수와 표준편차를 이용하여 다음과 같이 간결하게 표현할 수도 있습니다.</p>
+<p><span class="math display">\[
+\hat{\beta}_1 = r \frac{SD_y}{SD_x}, \qquad
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\]</span></p>
+<p>이 공식을 이용하여 최소제곱 해를 구하는 함수 <code>least_squares_fit()</code> 을 정의합니다.</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="관계와-예측.html#cb457-1" tabindex="-1"></a>least_squares_fit <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_name, y_name) {</span>
+<span id="cb457-2"><a href="관계와-예측.html#cb457-2" tabindex="-1"></a>  <span class="co"># 목적: 주어진 자료로 최소제곱 절편과 기울기를 계산</span></span>
+<span id="cb457-3"><a href="관계와-예측.html#cb457-3" tabindex="-1"></a>  <span class="co"># 반환: 이름 있는 벡터 c(b0 = 절편, b1 = 기울기)</span></span>
+<span id="cb457-4"><a href="관계와-예측.html#cb457-4" tabindex="-1"></a></span>
+<span id="cb457-5"><a href="관계와-예측.html#cb457-5" tabindex="-1"></a>  x <span class="ot">&lt;-</span> df[[x_name]]</span>
+<span id="cb457-6"><a href="관계와-예측.html#cb457-6" tabindex="-1"></a>  y <span class="ot">&lt;-</span> df[[y_name]]</span>
+<span id="cb457-7"><a href="관계와-예측.html#cb457-7" tabindex="-1"></a></span>
+<span id="cb457-8"><a href="관계와-예측.html#cb457-8" tabindex="-1"></a>  r    <span class="ot">&lt;-</span> <span class="fu">cor</span>(x, y)</span>
+<span id="cb457-9"><a href="관계와-예측.html#cb457-9" tabindex="-1"></a>  SD_x <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb457-10"><a href="관계와-예측.html#cb457-10" tabindex="-1"></a>  SD_y <span class="ot">&lt;-</span> <span class="fu">sd</span>(y)</span>
+<span id="cb457-11"><a href="관계와-예측.html#cb457-11" tabindex="-1"></a></span>
+<span id="cb457-12"><a href="관계와-예측.html#cb457-12" tabindex="-1"></a>  b1 <span class="ot">&lt;-</span> r <span class="sc">*</span> SD_y <span class="sc">/</span> SD_x</span>
+<span id="cb457-13"><a href="관계와-예측.html#cb457-13" tabindex="-1"></a>  b0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y) <span class="sc">-</span> b1 <span class="sc">*</span> <span class="fu">mean</span>(x)</span>
+<span id="cb457-14"><a href="관계와-예측.html#cb457-14" tabindex="-1"></a></span>
+<span id="cb457-15"><a href="관계와-예측.html#cb457-15" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">b0 =</span> b0, <span class="at">b1 =</span> b1)</span>
+<span id="cb457-16"><a href="관계와-예측.html#cb457-16" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="관계와-예측.html#cb458-1" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">least_squares_fit</span>(father_son, <span class="st">&quot;fheight&quot;</span>, <span class="st">&quot;sheight&quot;</span>)</span>
+<span id="cb458-2"><a href="관계와-예측.html#cb458-2" tabindex="-1"></a>beta</span></code></pre></div>
+<pre><code>##        b0        b1 
+## 86.071975  0.514093</code></pre>
+<p>기울기의 추정량은 약 <span class="math inline">\(\hat{\beta}_1 = 0.514\)</span> 로 상관계수(약 0.501)와 매우 유사합니다. 아버지와 아들 키의 표준편차가 거의 동일하기 때문에 <span class="math inline">\(\hat{\beta}_1 = r \cdot SD_y / SD_x \approx r\)</span> 이 되는 것입니다.</p>
+<p>이제 최소제곱 추정량에서의 평균제곱오차를 구해 봅니다.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="관계와-예측.html#cb460-1" tabindex="-1"></a>mse_best <span class="ot">&lt;-</span> <span class="fu">least_squares_error</span>(father_son, <span class="st">&quot;fheight&quot;</span>, <span class="st">&quot;sheight&quot;</span>,</span>
+<span id="cb460-2"><a href="관계와-예측.html#cb460-2" tabindex="-1"></a>                                <span class="at">intercept =</span> beta[<span class="st">&quot;b0&quot;</span>],</span>
+<span id="cb460-3"><a href="관계와-예측.html#cb460-3" tabindex="-1"></a>                                <span class="at">slope     =</span> beta[<span class="st">&quot;b1&quot;</span>],</span>
+<span id="cb460-4"><a href="관계와-예측.html#cb460-4" tabindex="-1"></a>                                <span class="at">percent_point_errors =</span> <span class="fl">0.03</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:lse-best"></span>
+<img src="_main_files/figure-html/lse-best-1.png" alt="최소제곱 회귀직선과 오차" width="576" />
+<p class="caption">
+Figure 5.15: 최소제곱 회귀직선과 오차
+</p>
+</div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="관계와-예측.html#cb461-1" tabindex="-1"></a>mse_best</span></code></pre></div>
+<pre><code>## [1] 38.23082</code></pre>
+<p>이 값은 <strong>모든 절편·기울기 조합에 대한 최소값</strong> 입니다. 즉, 다른 어떤 값을 넣어도 평균제곱오차는 이보다 커집니다. 앞서 계산한 <code>mse_1</code>, <code>mse_2</code> 와 비교해 보세요.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="관계와-예측.html#cb463-1" tabindex="-1"></a><span class="fu">c</span>(<span class="at">mse_1 =</span> mse_1, <span class="at">mse_2 =</span> mse_2, <span class="at">mse_best =</span> mse_best)</span></code></pre></div>
+<pre><code>##     mse_1     mse_2  mse_best 
+## 328.39745  73.29044  38.23082</code></pre>
+<p>추정된 회귀직선은 다음과 같습니다.</p>
+<p><span class="math display">\[
+E(y \mid x) = 86.07 + 0.51x
+\]</span></p>
+<p>이는 <strong>아버지의 키가 1cm 증가하면 아들의 키 평균이 약 0.51cm 증가한다</strong> 는 의미입니다.</p>
+<p>이 식으로 예측을 할 수 있습니다. 예를 들어 아버지의 키가 185.0cm 인 경우 아들의 평균적인 키는 다음과 같이 예측됩니다.</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="관계와-예측.html#cb465-1" tabindex="-1"></a>beta[<span class="st">&quot;b0&quot;</span>] <span class="sc">+</span> beta[<span class="st">&quot;b1&quot;</span>] <span class="sc">*</span> <span class="fl">185.0</span></span></code></pre></div>
+<pre><code>##       b0 
+## 181.1792</code></pre>
+<blockquote>
+<p><strong>유의할 점</strong>: 주어진 아버지 키에 대한 예측값은 <strong>아들의 평균적인 키</strong> 에 대한 예측값입니다. 실제 관측값들은 이 직선을 중심으로 퍼져 있습니다.</p>
+</blockquote>
+<p><code>ggplot2</code> 에서는 <strong><code>geom_smooth(method = "lm")</code></strong> 으로 회귀직선과 신뢰띠를 즉시 그릴 수 있습니다.</p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="관계와-예측.html#cb467-1" tabindex="-1"></a><span class="fu">ggplot</span>(father_son, <span class="fu">aes</span>(<span class="at">x =</span> fheight, <span class="at">y =</span> sheight)) <span class="sc">+</span></span>
+<span id="cb467-2"><a href="관계와-예측.html#cb467-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb467-3"><a href="관계와-예측.html#cb467-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb467-4"><a href="관계와-예측.html#cb467-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;아버지의 키 (cm)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;아들의 키 (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb467-5"><a href="관계와-예측.html#cb467-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:fs-regline"></span>
+<img src="_main_files/figure-html/fs-regline-1.png" alt="아버지-아들 키의 최소제곱 회귀직선" width="576" />
+<p class="caption">
+Figure 5.16: 아버지-아들 키의 최소제곱 회귀직선
+</p>
+</div>
+<hr />
+</div>
+</div>
+</div>
+<div id="선형-회귀모형의-평가" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> 선형 회귀모형의 평가<a href="관계와-예측.html#%EC%84%A0%ED%98%95-%ED%9A%8C%EA%B7%80%EB%AA%A8%ED%98%95%EC%9D%98-%ED%8F%89%EA%B0%80" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>추정된 회귀직선으로부터 관측값들이 퍼진 정도가 작아질수록, 회귀모형이 두 변수의 관계를 더 잘 설명한다고 판단할 수 있습니다.</p>
+<p>두 개의 모의 데이터셋을 만들어 비교해 봅니다. 두 자료는 동일한 참 모형 <span class="math inline">\(y = 1.0 + 1.5x\)</span> 를 따르지만, 오차의 크기가 다릅니다.</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="관계와-예측.html#cb469-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">111121</span>)</span>
+<span id="cb469-2"><a href="관계와-예측.html#cb469-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb469-3"><a href="관계와-예측.html#cb469-3" tabindex="-1"></a></span>
+<span id="cb469-4"><a href="관계와-예측.html#cb469-4" tabindex="-1"></a><span class="co"># 오차가 큰 경우 (sigma = 5.0)</span></span>
+<span id="cb469-5"><a href="관계와-예측.html#cb469-5" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb469-6"><a href="관계와-예측.html#cb469-6" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fl">1.0</span> <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">5.0</span>)</span>
+<span id="cb469-7"><a href="관계와-예측.html#cb469-7" tabindex="-1"></a>df_reg_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x1, <span class="at">y =</span> y1, <span class="at">case =</span> <span class="st">&quot;Large errors&quot;</span>)</span>
+<span id="cb469-8"><a href="관계와-예측.html#cb469-8" tabindex="-1"></a></span>
+<span id="cb469-9"><a href="관계와-예측.html#cb469-9" tabindex="-1"></a><span class="co"># 오차가 작은 경우 (sigma = 1.0)</span></span>
+<span id="cb469-10"><a href="관계와-예측.html#cb469-10" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb469-11"><a href="관계와-예측.html#cb469-11" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fl">1.0</span> <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb469-12"><a href="관계와-예측.html#cb469-12" tabindex="-1"></a>df_reg_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x2, <span class="at">y =</span> y2, <span class="at">case =</span> <span class="st">&quot;Small errors&quot;</span>)</span>
+<span id="cb469-13"><a href="관계와-예측.html#cb469-13" tabindex="-1"></a></span>
+<span id="cb469-14"><a href="관계와-예측.html#cb469-14" tabindex="-1"></a>df_reg <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_reg_1, df_reg_2)</span></code></pre></div>
+<p>Python seaborn의 <code>FacetGrid</code> + <code>regplot</code> 조합에 해당하는 것이 ggplot2의 <strong><code>facet_wrap()</code></strong> + <strong><code>geom_smooth(method = "lm")</code></strong> 입니다.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="관계와-예측.html#cb470-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_reg, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb470-2"><a href="관계와-예측.html#cb470-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb470-3"><a href="관계와-예측.html#cb470-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span></span>
+<span id="cb470-4"><a href="관계와-예측.html#cb470-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> case) <span class="sc">+</span></span>
+<span id="cb470-5"><a href="관계와-예측.html#cb470-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:reg-compare"></span>
+<img src="_main_files/figure-html/reg-compare-1.png" alt="오차 크기에 따른 회귀모형 비교" width="768" />
+<p class="caption">
+Figure 5.17: 오차 크기에 따른 회귀모형 비교
+</p>
+</div>
+<p>두 번째 데이터에 적합한 모형이 첫 번째보다 오차가 훨씬 작다는 것을 알 수 있습니다. 따라서 평균제곱오차가 작을수록 관계를 더 잘 설명하는 모형이라고 볼 수 있습니다.</p>
+<p>하지만 MSE는 <strong>자료의 단위에 따라 값이 변하는 측도</strong> 이므로, 단위가 다른 자료끼리는 직접 비교하기 어렵습니다. 이럴 때 단위에 영향받지 않도록 표준화한 측도가 <strong>결정계수(coefficient of determination, <span class="math inline">\(R^2\)</span>)</strong> 입니다.</p>
+<p><span class="math display">\[
+R^2 = 1 - \frac{mse}{SD_y^2}
+\]</span></p>
+<p>결정계수는 0과 1 사이의 값을 가지며 보통 백분율로 표현합니다. 값이 클수록 회귀모형이 반응변수를 잘 설명한다는 의미입니다.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="관계와-예측.html#cb472-1" tabindex="-1"></a><span class="co"># 각 자료의 최소제곱 적합과 mse</span></span>
+<span id="cb472-2"><a href="관계와-예측.html#cb472-2" tabindex="-1"></a>b_1   <span class="ot">&lt;-</span> <span class="fu">least_squares_fit</span>(df_reg_1, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb472-3"><a href="관계와-예측.html#cb472-3" tabindex="-1"></a>mse_a <span class="ot">&lt;-</span> <span class="fu">least_squares_error</span>(df_reg_1, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, b_1[<span class="st">&quot;b0&quot;</span>], b_1[<span class="st">&quot;b1&quot;</span>], <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="관계와-예측.html#cb473-1" tabindex="-1"></a>b_2   <span class="ot">&lt;-</span> <span class="fu">least_squares_fit</span>(df_reg_2, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb473-2"><a href="관계와-예측.html#cb473-2" tabindex="-1"></a>mse_b <span class="ot">&lt;-</span> <span class="fu">least_squares_error</span>(df_reg_2, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, b_2[<span class="st">&quot;b0&quot;</span>], b_2[<span class="st">&quot;b1&quot;</span>], <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="관계와-예측.html#cb474-1" tabindex="-1"></a><span class="fu">c</span>(<span class="at">mse_large =</span> mse_a, <span class="at">mse_small =</span> mse_b)</span></code></pre></div>
+<pre><code>## mse_large mse_small 
+## 16.525700  1.275736</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="관계와-예측.html#cb476-1" tabindex="-1"></a><span class="co"># 결정계수의 계산 (분모는 표본이 아닌 n 으로 나눈 분산과 맞추기 위해 조정)</span></span>
+<span id="cb476-2"><a href="관계와-예측.html#cb476-2" tabindex="-1"></a>var_pop <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">mean</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb476-3"><a href="관계와-예측.html#cb476-3" tabindex="-1"></a></span>
+<span id="cb476-4"><a href="관계와-예측.html#cb476-4" tabindex="-1"></a>R2_1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> mse_a <span class="sc">/</span> <span class="fu">var_pop</span>(df_reg_1<span class="sc">$</span>y)</span>
+<span id="cb476-5"><a href="관계와-예측.html#cb476-5" tabindex="-1"></a>R2_2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> mse_b <span class="sc">/</span> <span class="fu">var_pop</span>(df_reg_2<span class="sc">$</span>y)</span>
+<span id="cb476-6"><a href="관계와-예측.html#cb476-6" tabindex="-1"></a></span>
+<span id="cb476-7"><a href="관계와-예측.html#cb476-7" tabindex="-1"></a><span class="fu">c</span>(<span class="at">R2_large_errors =</span> R2_1, <span class="at">R2_small_errors =</span> R2_2)</span></code></pre></div>
+<pre><code>## R2_large_errors R2_small_errors 
+##       0.3026858       0.6538207</code></pre>
+<p>첫 번째 자료의 결정계수는 매우 낮고, 두 번째 자료는 훨씬 높게 나타납니다. 따라서 <strong>두 번째 자료에서의 선형 회귀모형이 두 변수의 관계를 더 잘 설명</strong> 한다고 할 수 있습니다.</p>
+<p>아버지와 아들의 키 자료에서 선형 회귀모형의 설명력은 다음과 같습니다.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="관계와-예측.html#cb478-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> mse_best <span class="sc">/</span> <span class="fu">var_pop</span>(father_son<span class="sc">$</span>sheight)</span></code></pre></div>
+<pre><code>## [1] 0.2513401</code></pre>
+<blockquote>
+<p><strong>참고</strong>: 단순선형회귀에서는 <span class="math inline">\(R^2 = r^2\)</span> 라는 관계가 성립합니다. 실제로 상관계수 0.501을 제곱하면 약 0.251이 되어 위 값과 일치합니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="관계와-예측.html#cb480-1" tabindex="-1"></a><span class="fu">cor</span>(father_son<span class="sc">$</span>fheight, father_son<span class="sc">$</span>sheight)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 0.2513401</code></pre>
+<hr />
+</div>
+<div id="r의-lm-함수" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> R의 <code>lm()</code> 함수<a href="관계와-예측.html#r%EC%9D%98-lm-%ED%95%A8%EC%88%98" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>지금까지 최소제곱법의 원리를 이해하기 위해 직접 함수를 만들어 계산했습니다. 하지만 실제 분석에서는 <strong>R에 기본 내장된 <code>lm()</code> 함수</strong> 를 사용하면 이 모든 작업을 한 줄로 처리할 수 있습니다.</p>
+<p>Python에서는 <code>sklearn</code> 이나 <code>statsmodels</code> 같은 별도 패키지를 설치하고, 데이터를 행렬로 변환하며(<code>reshape(-1, 1)</code>), 상수항을 따로 추가해야 했습니다. 반면 <strong>R에서는 <code>lm()</code> 이 base에 포함되어 있고, 데이터프레임을 그대로 받으며, 절편도 자동으로 포함</strong> 합니다.</p>
+<p>기본 문법은 다음과 같습니다.</p>
+<pre><code>lm(반응변수 ~ 설명변수, data = 데이터프레임)</code></pre>
+<p><code>~</code> (틸데)는 R의 <strong>모형 공식(formula)</strong> 을 정의하는 연산자로, “왼쪽을 오른쪽으로 설명한다”는 의미입니다.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="관계와-예측.html#cb483-1" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(sheight <span class="sc">~</span> fheight, <span class="at">data =</span> father_son)</span>
+<span id="cb483-2"><a href="관계와-예측.html#cb483-2" tabindex="-1"></a>fit</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sheight ~ fheight, data = father_son)
+## 
+## Coefficients:
+## (Intercept)      fheight  
+##     86.0720       0.5141</code></pre>
+<p>앞서 직접 계산한 값(<code>b0 = 86.07</code>, <code>b1 = 0.514</code>)과 정확히 일치합니다.</p>
+<p><strong><code>summary()</code></strong> 를 사용하면 회귀분석의 상세한 결과를 모두 확인할 수 있습니다.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="관계와-예측.html#cb485-1" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sheight ~ fheight, data = father_son)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -22.5480  -3.8466  -0.0201   4.1364  22.7799 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 86.07198    4.65418   18.49   &lt;2e-16 ***
+## fheight      0.51409    0.02705   19.01   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.189 on 1076 degrees of freedom
+## Multiple R-squared:  0.2513, Adjusted R-squared:  0.2506 
+## F-statistic: 361.2 on 1 and 1076 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>출력에서 확인할 수 있는 주요 항목은 다음과 같습니다.</p>
+<ul>
+<li><strong><code>Estimate</code></strong>: 회귀계수의 추정값. <code>(Intercept)</code> 가 <span class="math inline">\(\hat{\beta}_0\)</span>, <code>fheight</code> 가 <span class="math inline">\(\hat{\beta}_1\)</span></li>
+<li><strong><code>Std. Error</code></strong>: 계수 추정값의 표준오차</li>
+<li><strong><code>Pr(&gt;|t|)</code></strong>: 귀무가설 “<span class="math inline">\(\beta_i = 0\)</span>” 에 대한 p-값</li>
+<li><strong><code>Multiple R-squared</code></strong>: 결정계수 <span class="math inline">\(R^2\)</span> (앞서 직접 계산한 0.251과 일치)</li>
+<li><strong><code>Residual standard error</code></strong>: 잔차의 표준오차</li>
+</ul>
+<p>필요한 값만 프로그램적으로 꺼내 쓸 수도 있습니다.</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="관계와-예측.html#cb487-1" tabindex="-1"></a><span class="fu">coef</span>(fit)                  <span class="co"># 회귀계수</span></span></code></pre></div>
+<pre><code>## (Intercept)     fheight 
+##   86.071975    0.514093</code></pre>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="관계와-예측.html#cb489-1" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>r.squared     <span class="co"># 결정계수</span></span></code></pre></div>
+<pre><code>## [1] 0.2513401</code></pre>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="관계와-예측.html#cb491-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">resid</span>(fit)<span class="sc">^</span><span class="dv">2</span>)         <span class="co"># 평균제곱오차 (mse)</span></span></code></pre></div>
+<pre><code>## [1] 38.23082</code></pre>
+<p><code>mean(resid(fit)^2)</code> 값이 앞서 구한 <code>mse_best</code> 와 일치하는 것을 확인할 수 있습니다.</p>
+<p><strong>예측</strong> 은 <strong><code>predict()</code></strong> 함수로 수행합니다. <code>newdata</code> 에는 학습 시 사용한 설명변수와 <strong>같은 이름의 열</strong> 을 가진 데이터프레임을 넘깁니다.</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="관계와-예측.html#cb493-1" tabindex="-1"></a><span class="co"># 아버지 키가 185cm 인 경우 아들 키 예측</span></span>
+<span id="cb493-2"><a href="관계와-예측.html#cb493-2" tabindex="-1"></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">fheight =</span> <span class="fl">185.0</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 181.1792</code></pre>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="관계와-예측.html#cb495-1" tabindex="-1"></a><span class="co"># 여러 값 동시 예측</span></span>
+<span id="cb495-2"><a href="관계와-예측.html#cb495-2" tabindex="-1"></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">fheight =</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)))</span></code></pre></div>
+<pre><code>##        1        2        3        4 
+## 168.3269 173.4678 178.6087 183.7497</code></pre>
+<p>신뢰구간과 예측구간도 옵션 하나로 얻을 수 있습니다.</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="관계와-예측.html#cb497-1" tabindex="-1"></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">fheight =</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">190</span>)),</span>
+<span id="cb497-2"><a href="관계와-예측.html#cb497-2" tabindex="-1"></a>        <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 168.3269 167.5938 169.0599
+## 2 173.4678 173.0841 173.8515
+## 3 178.6087 178.0426 179.1748
+## 4 183.7497 182.7215 184.7778</code></pre>
+<p>체력측정 자료에도 같은 방식으로 적용해 봅니다.</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="관계와-예측.html#cb499-1" tabindex="-1"></a>fit_male <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> height, <span class="at">data =</span> physical_M)</span>
+<span id="cb499-2"><a href="관계와-예측.html#cb499-2" tabindex="-1"></a><span class="fu">summary</span>(fit_male)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ height, data = physical_M)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -37.212  -6.745  -0.741   5.771  50.210 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -95.60571    9.11415  -10.49   &lt;2e-16 ***
+## height        0.98272    0.05274   18.63   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.988 on 918 degrees of freedom
+## Multiple R-squared:  0.2744, Adjusted R-squared:  0.2736 
+## F-statistic: 347.2 on 1 and 918 DF,  p-value: &lt; 2.2e-16</code></pre>
+<hr />
+</div>
+<div id="정리-1" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> 정리<a href="관계와-예측.html#%EC%A0%95%EB%A6%AC-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>이번 장에서 배운 내용을 Python과 비교하여 정리하면 다음과 같습니다.</p>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="47%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>목적</th>
+<th>Python</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>상관계수</td>
+<td><code>df.corr()</code></td>
+<td><code>cor()</code></td>
+</tr>
+<tr class="even">
+<td>그룹별 상관계수</td>
+<td><code>groupby().corr()</code></td>
+<td><code>group_by()</code> + <code>summarise(cor(...))</code></td>
+</tr>
+<tr class="odd">
+<td>이변량 정규난수</td>
+<td><code>np.random.multivariate_normal()</code></td>
+<td><code>MASS::mvrnorm()</code></td>
+</tr>
+<tr class="even">
+<td>표준화</td>
+<td>직접 정의 / <code>StandardScaler</code></td>
+<td><code>scale()</code> / 직접 정의</td>
+</tr>
+<tr class="odd">
+<td>여러 열에 함수 적용</td>
+<td><code>df.apply(f, axis=0)</code></td>
+<td><code>mutate(across(everything(), f))</code></td>
+</tr>
+<tr class="even">
+<td>구간 나누기</td>
+<td><code>pd.cut()</code></td>
+<td><code>cut()</code></td>
+</tr>
+<tr class="odd">
+<td>그룹별 평균</td>
+<td><code>groupby().mean()</code></td>
+<td><code>group_by()</code> + <code>summarise()</code></td>
+</tr>
+<tr class="even">
+<td>수직·수평선</td>
+<td><code>plt.axvline/axhline</code></td>
+<td><code>geom_vline()</code> / <code>geom_hline()</code></td>
+</tr>
+<tr class="odd">
+<td>회귀직선 겹치기</td>
+<td><code>sns.regplot()</code></td>
+<td><code>geom_smooth(method = "lm")</code></td>
+</tr>
+<tr class="even">
+<td>여러 패널로 나누기</td>
+<td><code>sns.FacetGrid</code></td>
+<td><code>facet_wrap()</code></td>
+</tr>
+<tr class="odd">
+<td>선형회귀 적합</td>
+<td><code>LinearRegression().fit(X, y)</code></td>
+<td><code>lm(y ~ x, data = df)</code></td>
+</tr>
+<tr class="even">
+<td>절편 / 기울기</td>
+<td><code>.intercept_</code> / <code>.coef_</code></td>
+<td><code>coef(fit)</code></td>
+</tr>
+<tr class="odd">
+<td>예측</td>
+<td><code>.predict(X)</code></td>
+<td><code>predict(fit, newdata)</code></td>
+</tr>
+<tr class="even">
+<td>평균제곱오차</td>
+<td><code>mean_squared_error(y, y_pred)</code></td>
+<td><code>mean(resid(fit)^2)</code></td>
+</tr>
+<tr class="odd">
+<td>결정계수</td>
+<td><code>r2_score(y, y_pred)</code></td>
+<td><code>summary(fit)$r.squared</code></td>
+</tr>
+<tr class="even">
+<td>전체 결과 요약</td>
+<td>(여러 줄 필요)</td>
+<td><code>summary(fit)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>핵심 개념</strong></p>
+<ul>
+<li><strong>상관계수</strong> 는 두 변수의 <strong>선형</strong> 관계의 방향과 강도를 <span class="math inline">\(-1 \sim 1\)</span> 사이의 수치로 나타냅니다. 비선형 관계는 반영하지 못합니다.</li>
+<li><strong>선형 회귀모형</strong> <span class="math inline">\(E(y \mid x) = \beta_0 + \beta_1 x\)</span> 는 설명변수가 주어졌을 때 반응변수의 <strong>평균</strong> 이 직선으로 변한다는 모형입니다.</li>
+<li><strong>최소제곱법</strong> 은 평균제곱오차를 최소화하는 절편과 기울기를 찾는 방법이며, 그 해는 <span class="math inline">\(\hat{\beta}_1 = r \cdot SD_y/SD_x\)</span>, <span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}\)</span> 입니다.</li>
+<li><strong>결정계수</strong> <span class="math inline">\(R^2\)</span> 는 모형의 설명력을 단위에 무관하게 나타내며, 단순선형회귀에서는 <span class="math inline">\(R^2 = r^2\)</span> 입니다.</li>
+<li>실제 분석에서는 base R의 <strong><code>lm()</code></strong> 한 줄로 위의 모든 계산을 수행할 수 있습니다.</li>
+</ul>
+<hr />
+</div>
+<div id="문제-1" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> 문제<a href="관계와-예측.html#%EB%AC%B8%EC%A0%9C-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>체력측정 자료에서 <strong>성인 여자</strong> 의 키로 몸무게를 예측하는 선형 회귀모형을 <code>lm()</code> 으로 적합하고, 절편·기울기·결정계수를 해석해 보세요.</p></li>
+<li><p>성인 남자와 성인 여자의 회귀직선을 하나의 산점도 위에 함께 그려 비교해 보세요. 힌트: <code>aes(color = gender)</code> 와 <code>geom_smooth(method = "lm")</code> 를 함께 사용합니다.</p></li>
+<li><p><code>least_squares_fit()</code> 함수로 직접 구한 절편·기울기가 <code>lm()</code> 의 결과와 일치하는지 성인 남자 자료로 확인해 보세요.</p></li>
+<li><p>Galton 자료에서 아버지 키가 평균보다 <strong>매우 큰</strong> 사람들의 아들 키는, 아버지 키만큼 크지는 않은 경향이 있습니다(기울기가 1보다 작기 때문). 이 현상을 <strong>평균으로의 회귀(regression to the mean)</strong> 라고 합니다. 아버지 키가 190cm 인 경우와 155cm 인 경우의 예측값을 각각 구하고, 전체 평균과 비교하여 이 현상을 설명해 보세요.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="자료의-시각화와-분포.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/<username>/<repo>/edit/main/05_relation_prediction.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
